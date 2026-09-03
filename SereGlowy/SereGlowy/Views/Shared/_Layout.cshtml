@@ -1,0 +1,256 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>@ViewData["Title"] - SereGlowy</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <header>
+        <nav class="navbar navbar-expand-lg sereglowy-navbar">
+            <div class="container">
+
+                <a class="navbar-brand sereglowy-logo"
+                   asp-controller="Home"
+                   asp-action="Index">
+                    SereGlowy
+                    <span>✦</span>
+                </a>
+
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#mainNavbar"
+                        aria-controls="mainNavbar"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+
+                    <span class="navbar-toggler-icon"></span>
+
+                </button>
+
+                <div class="collapse navbar-collapse"
+                     id="mainNavbar">
+
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               asp-controller="Home"
+                               asp-action="Index">
+                                Home
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               asp-controller="Products"
+                               asp-action="Index">
+                                Products
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               asp-controller="Ingredients"
+                               asp-action="Index">
+                                Ingredients
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               asp-controller="Makeup"
+                               asp-action="Index">
+                                Makeup Match
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               asp-controller="Routine"
+                               asp-action="Index">
+                                My Routine
+                            </a>
+                        </li>
+
+                    </ul>
+
+                    <div class="navbar-actions">
+
+                        ♡<a asp-controller="MyProducts"
+                        asp-action="Index"
+                        class="nav-icon-link"
+                        title="My Products">
+                        ♡
+                    </a>
+
+                        <a asp-area="Identity"
+                           asp-page="/Account/Login"
+                           class="nav-login">
+                            Login
+                        </a>
+
+                        <a asp-area="Identity"
+                           asp-page="/Account/Register"
+                           class="nav-register">
+                            Get Started
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main role="main">
+        @RenderBody()
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="sereglowy-footer">
+
+        <div class="container">
+
+            <div class="row gy-4">
+
+                <div class="col-lg-4">
+
+                    <div class="footer-brand">
+                        SereGlowy
+                        <span>✦</span>
+                    </div>
+
+                    <p class="footer-description">
+                        A softer way to organize your skincare,
+                        understand your routine, and discover
+                        products that match your preferences.
+                    </p>
+
+                </div>
+
+
+                <div class="col-6 col-lg-2">
+
+                    <h6>Explore</h6>
+
+                    <ul class="footer-links">
+
+                        <li>
+                            <a asp-controller="Home"
+                               asp-action="Index">
+                                Home
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                Products
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                Ingredients
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <div class="col-6 col-lg-2">
+
+                    <h6>Your Glow</h6>
+
+                    <ul class="footer-links">
+
+                        <li>
+                            <a href="#">
+                                Skin Profile
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                My Routine
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                My Products
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <div class="col-lg-4">
+
+                    <div class="footer-note">
+
+                        <span>GLOW WITH INTENTION ✦</span>
+
+                        <p>
+                            Personalized skincare organization
+                            without medical diagnosis.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <p>
+                    © @DateTime.Now.Year SereGlowy.
+                    All rights reserved.
+                </p>
+
+                <p>
+                    Made with care ✦
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

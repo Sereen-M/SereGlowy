@@ -1,0 +1,203 @@
+﻿@{
+    ViewData["Title"] = "Ingredients Guide";
+}
+
+<section class="ingredients-hero">
+    <div class="container text-center">
+
+        <span class="section-label">
+            INGREDIENTS GUIDE
+        </span>
+
+        <h1>
+            Understand what’s inside your skincare.
+        </h1>
+
+        <p>
+            Explore common skincare ingredients, learn their general purpose,
+            and discover which products contain them.
+        </p>
+
+    </div>
+</section>
+
+
+<section class="ingredients-section">
+    <div class="container">
+
+        <div class="ingredients-toolbar">
+
+            <input type="text"
+                   class="ingredient-search"
+                   placeholder="Search ingredients..." />
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <div class="col-md-6 col-lg-4">
+                <div class="ingredient-card">
+
+                    <span class="ingredient-number">01</span>
+
+                    <h3>Hyaluronic Acid</h3>
+
+                    <p>
+                        Commonly used in skincare products focused on hydration
+                        and maintaining a soft skin feel.
+                    </p>
+
+                    <div class="ingredient-tags">
+                        <span>Hydration</span>
+                        <span>Dry Skin</span>
+                    </div>
+
+                    <a asp-controller="Ingredients"
+                       asp-action="Details"
+                       asp-route-id="1">
+                        Learn More →
+                    </a>
+
+                </div>
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+                <div class="ingredient-card">
+
+                    <span class="ingredient-number">02</span>
+
+                    <h3>Niacinamide</h3>
+
+                    <p>
+                        A widely used skincare ingredient found in many
+                        serums and moisturizers.
+                    </p>
+
+                    <div class="ingredient-tags">
+                        <span>Oil Control</span>
+                        <span>Combination</span>
+                    </div>
+
+                    <a asp-controller="Ingredients"
+                       asp-action="Details"
+                       asp-route-id="2">
+                        Learn More →
+                    </a>
+
+                </div>
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+                <div class="ingredient-card">
+
+                    <span class="ingredient-number">03</span>
+
+                    <h3>Vitamin C</h3>
+
+                    <p>
+                        Commonly included in skincare products designed
+                        for brighter-looking skin.
+                    </p>
+
+                    <div class="ingredient-tags">
+                        <span>Glow</span>
+                        <span>Brightening</span>
+                    </div>
+
+                    <a asp-controller="Ingredients"
+                       asp-action="Details"
+                       asp-route-id="3">
+                        Learn More →
+                    </a>
+
+                </div>
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+                <div class="ingredient-card">
+
+                    <span class="ingredient-number">04</span>
+
+                    <h3>Ceramides</h3>
+
+                    <p>
+                        Often found in moisturizers and skincare products
+                        focused on supporting the skin barrier.
+                    </p>
+
+                    <div class="ingredient-tags">
+                        <span>Moisture</span>
+                        <span>Dry Skin</span>
+                    </div>
+
+                    <a asp-controller="Ingredients"
+                       asp-action="Details"
+                       asp-route-id="4">
+                        Learn More →
+                    </a>
+
+                </div>
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+                <div class="ingredient-card">
+
+                    <span class="ingredient-number">05</span>
+
+                    <h3>Salicylic Acid</h3>
+
+                    <p>
+                        Commonly used in skincare products designed
+                        for oily or combination skin routines.
+                    </p>
+
+                    <div class="ingredient-tags">
+                        <span>Oil Control</span>
+                        <span>Oily Skin</span>
+                    </div>
+
+                    <a asp-controller="Ingredients"
+                       asp-action="Details"
+                       asp-route-id="5">
+                        Learn More →
+                    </a>
+
+                </div>
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+                <div class="ingredient-card">
+
+                    <span class="ingredient-number">06</span>
+
+                    <h3>Squalane</h3>
+
+                    <p>
+                        A lightweight ingredient often included in
+                        products focused on moisture and comfort.
+                    </p>
+
+                    <div class="ingredient-tags">
+                        <span>Hydration</span>
+                        <span>Normal Skin</span>
+                    </div>
+
+                    <a asp-controller="Ingredients"
+                       asp-action="Details"
+                       asp-route-id="6">
+                        Learn More →
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>

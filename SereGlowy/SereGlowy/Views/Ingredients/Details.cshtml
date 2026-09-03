@@ -1,0 +1,120 @@
+﻿@{
+    ViewData["Title"] = "Ingredient Details";
+}
+
+<section class="ingredient-details-page">
+    <div class="container">
+
+        <div class="ingredient-details-box">
+
+            <span class="section-label">
+                INGREDIENT DETAILS
+            </span>
+
+            <h1>
+                Hyaluronic Acid
+            </h1>
+
+            <p class="ingredient-intro">
+                Hyaluronic Acid is a common skincare ingredient often used
+                in products focused on hydration and helping the skin feel
+                soft and comfortable.
+            </p>
+
+
+            <div class="row g-4 mt-4">
+
+                <div class="col-md-4">
+                    <div class="ingredient-info-card">
+
+                        <span>Purpose</span>
+
+                        <h4>
+                            Hydration
+                        </h4>
+
+                        <p>
+                            Commonly included in skincare products
+                            designed to support hydration.
+                        </p>
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-4">
+                    <div class="ingredient-info-card">
+
+                        <span>Suitable For</span>
+
+                        <h4>
+                            Dry / Normal Skin
+                        </h4>
+
+                        <p>
+                            Often found in products made for users
+                            looking for additional moisture.
+                        </p>
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-4">
+                    <div class="ingredient-info-card">
+
+                        <span>Commonly Found In</span>
+
+                        <h4>
+                            Serums & Moisturizers
+                        </h4>
+
+                        <p>
+                            Frequently included in lightweight serums
+                            and moisturizing products.
+                        </p>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="ingredient-related mt-5">
+
+                <span class="section-label">
+                    RELATED PRODUCTS
+                </span>
+
+                <h2>
+                    Products containing this ingredient
+                </h2>
+
+                <p>
+                    Explore skincare products in SereGlowy that may
+                    include Hyaluronic Acid.
+                </p>
+
+                <a asp-controller="Products"
+                   asp-action="Index"
+                   class="btn btn-glow">
+                    Explore Products
+                </a>
+
+            </div>
+
+
+            <div class="mt-4">
+
+                <a asp-controller="Ingredients"
+                   asp-action="Index"
+                   class="ingredient-back-link">
+                    ← Back to Ingredients Guide
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>

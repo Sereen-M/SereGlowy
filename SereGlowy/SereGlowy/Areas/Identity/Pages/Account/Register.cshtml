@@ -1,0 +1,158 @@
+@page
+@model RegisterModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<section class="auth-page">
+
+    <div class="container">
+
+        <div class="auth-wrapper">
+
+            <div class="auth-intro">
+
+                <span class="section-label">
+                    START YOUR GLOW
+                </span>
+
+                <h1>
+                    Create your SereGlowy space.
+                </h1>
+
+                <p>
+                    Create your account, answer a few simple questions,
+                    and start building your personalized skincare experience.
+                </p>
+
+
+                <div class="auth-decoration">
+
+                    <span>✦</span>
+
+                    <p>
+                        A few answers are all it takes
+                        to start your personalized journey.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="auth-card">
+
+                <div class="auth-card-header">
+
+                    <span>
+                        JOIN SEREGLOWY
+                    </span>
+
+                    <h2>
+                        Create Account
+                    </h2>
+
+                    <p>
+                        Your personalized glow starts here.
+                    </p>
+
+                </div>
+
+
+                <form id="registerForm"
+                      asp-route-returnUrl="@Model.ReturnUrl"
+                      method="post">
+
+                    <div asp-validation-summary="ModelOnly"
+                         class="text-danger auth-validation"
+                         role="alert">
+                    </div>
+
+
+                    <div class="auth-field">
+
+                        <label asp-for="Input.Email">
+                            Email Address
+                        </label>
+
+                        <input asp-for="Input.Email"
+                               autocomplete="username"
+                               placeholder="Enter your email" />
+
+                        <span asp-validation-for="Input.Email"
+                              class="text-danger">
+                        </span>
+
+                    </div>
+
+
+                    <div class="auth-field">
+
+                        <label asp-for="Input.Password">
+                            Password
+                        </label>
+
+                        <input asp-for="Input.Password"
+                               autocomplete="new-password"
+                               placeholder="Create a password" />
+
+                        <span asp-validation-for="Input.Password"
+                              class="text-danger">
+                        </span>
+
+                    </div>
+
+
+                    <div class="auth-field">
+
+                        <label asp-for="Input.ConfirmPassword">
+                            Confirm Password
+                        </label>
+
+                        <input asp-for="Input.ConfirmPassword"
+                               autocomplete="new-password"
+                               placeholder="Confirm your password" />
+
+                        <span asp-validation-for="Input.ConfirmPassword"
+                              class="text-danger">
+                        </span>
+
+                    </div>
+
+
+                    <button id="registerSubmit"
+                            type="submit"
+                            class="btn btn-glow auth-main-btn">
+
+                        Create My Account
+
+                    </button>
+
+
+                    <div class="auth-switch">
+
+                        <span>
+                            Already have an account?
+                        </span>
+
+                        <a asp-page="./Login"
+                           asp-route-returnUrl="@Model.ReturnUrl">
+                            Login
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,216 @@
+﻿@{
+    ViewData["Title"] = "My Products";
+}
+
+<section class="my-products-page">
+    <div class="container">
+
+        <div class="my-products-header text-center">
+            <span class="section-label">
+                MY PRODUCTS
+            </span>
+
+            <h1>
+                Your skincare shelf, all in one place.
+            </h1>
+
+            <p>
+                Keep track of the skincare products you use
+                and manage your personal collection.
+            </p>
+        </div>
+
+
+        <div class="my-products-summary">
+
+            <div class="summary-item">
+                <span>Saved Products</span>
+                <strong>4</strong>
+            </div>
+
+            <div class="summary-item">
+                <span>Routine Products</span>
+                <strong>3</strong>
+            </div>
+
+            <div class="summary-item">
+                <span>Categories</span>
+                <strong>4</strong>
+            </div>
+
+        </div>
+
+
+        <div class="row g-4 mt-2">
+
+            <div class="col-md-6 col-lg-4">
+                <div class="saved-product-card">
+
+                    <div class="saved-product-image">
+                        <span class="saved-category">
+                            Cleanser
+                        </span>
+
+                        <div class="image-placeholder">
+                            Product Image
+                        </div>
+                    </div>
+
+                    <div class="saved-product-content">
+
+                        <span class="product-brand">
+                            CeraVe
+                        </span>
+
+                        <h3>
+                            Hydrating Facial Cleanser
+                        </h3>
+
+                        <p>
+                            A simple cleanser saved to your skincare shelf.
+                        </p>
+
+                        <div class="saved-product-actions">
+
+                            <a asp-controller="Products"
+                               asp-action="Details"
+                               asp-route-id="1">
+                                View Details
+                            </a>
+
+                            <button type="button"
+                                    class="remove-product-btn">
+                                Remove
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+                <div class="saved-product-card">
+
+                    <div class="saved-product-image">
+                        <span class="saved-category">
+                            Serum
+                        </span>
+
+                        <div class="image-placeholder">
+                            Product Image
+                        </div>
+                    </div>
+
+                    <div class="saved-product-content">
+
+                        <span class="product-brand">
+                            The Ordinary
+                        </span>
+
+                        <h3>
+                            Niacinamide Serum
+                        </h3>
+
+                        <p>
+                            A serum saved as part of your skincare collection.
+                        </p>
+
+                        <div class="saved-product-actions">
+
+                            <a asp-controller="Products"
+                               asp-action="Details"
+                               asp-route-id="2">
+                                View Details
+                            </a>
+
+                            <button type="button"
+                                    class="remove-product-btn">
+                                Remove
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+                <div class="saved-product-card">
+
+                    <div class="saved-product-image">
+                        <span class="saved-category">
+                            Sunscreen
+                        </span>
+
+                        <div class="image-placeholder">
+                            Product Image
+                        </div>
+                    </div>
+
+                    <div class="saved-product-content">
+
+                        <span class="product-brand">
+                            Beauty of Joseon
+                        </span>
+
+                        <h3>
+                            Relief Sun SPF
+                        </h3>
+
+                        <p>
+                            A sunscreen saved for your morning routine.
+                        </p>
+
+                        <div class="saved-product-actions">
+
+                            <a asp-controller="Products"
+                               asp-action="Details"
+                               asp-route-id="3">
+                                View Details
+                            </a>
+
+                            <button type="button"
+                                    class="remove-product-btn">
+                                Remove
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="my-products-empty-note">
+
+            <span class="section-label">
+                DISCOVER MORE
+            </span>
+
+            <h2>
+                Add more products to your shelf.
+            </h2>
+
+            <p>
+                Explore the skincare collection and save products
+                you want to keep organized in SereGlowy.
+            </p>
+
+            <a asp-controller="Products"
+               asp-action="Index"
+               class="btn btn-glow">
+                Explore Products
+            </a>
+
+        </div>
+
+    </div>
+</section>

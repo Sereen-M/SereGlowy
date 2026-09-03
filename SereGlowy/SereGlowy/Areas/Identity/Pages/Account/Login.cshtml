@@ -1,0 +1,157 @@
+@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<section class="auth-page">
+
+    <div class="container">
+
+        <div class="auth-wrapper">
+
+            <div class="auth-intro">
+
+                <span class="section-label">
+                    WELCOME BACK
+                </span>
+
+                <h1>
+                    Continue your glow journey.
+                </h1>
+
+                <p>
+                    Login to view your skin profile, personalized routine,
+                    recommendations, and saved products.
+                </p>
+
+                <div class="auth-decoration">
+                    <span>✦</span>
+
+                    <p>
+                        Your routine. Your products.
+                        Your SereGlowy space.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="auth-card">
+
+                <div class="auth-card-header">
+
+                    <span>
+                        SEREGLOWY
+                    </span>
+
+                    <h2>
+                        Login
+                    </h2>
+
+                    <p>
+                        Welcome back to your skincare space.
+                    </p>
+
+                </div>
+
+
+                <form id="account"
+                      method="post">
+
+                    <div asp-validation-summary="ModelOnly"
+                         class="text-danger auth-validation"
+                         role="alert">
+                    </div>
+
+
+                    <div class="auth-field">
+
+                        <label asp-for="Input.Email">
+                            Email Address
+                        </label>
+
+                        <input asp-for="Input.Email"
+                               autocomplete="username"
+                               placeholder="Enter your email" />
+
+                        <span asp-validation-for="Input.Email"
+                              class="text-danger">
+                        </span>
+
+                    </div>
+
+
+                    <div class="auth-field">
+
+                        <label asp-for="Input.Password">
+                            Password
+                        </label>
+
+                        <input asp-for="Input.Password"
+                               autocomplete="current-password"
+                               placeholder="Enter your password" />
+
+                        <span asp-validation-for="Input.Password"
+                              class="text-danger">
+                        </span>
+
+                    </div>
+
+
+                    <div class="auth-options">
+
+                        <label class="auth-checkbox">
+
+                            <input asp-for="Input.RememberMe" />
+
+                            <span>
+                                Remember me
+                            </span>
+
+                        </label>
+
+
+                        <a asp-page="./ForgotPassword">
+                            Forgot password?
+                        </a>
+
+                    </div>
+
+
+                    <button id="login-submit"
+                            type="submit"
+                            class="btn btn-glow auth-main-btn">
+
+                        Login
+
+                    </button>
+
+
+                    <div class="auth-switch">
+
+                        <span>
+                            New to SereGlowy?
+                        </span>
+
+                        <a asp-page="./Register"
+                           asp-route-returnUrl="@Model.ReturnUrl">
+                            Create an account
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

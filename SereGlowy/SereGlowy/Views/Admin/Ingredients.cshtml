@@ -1,0 +1,223 @@
+﻿@{
+    ViewData["Title"] = "Manage Ingredients";
+}
+
+<section class="admin-manage-page">
+    <div class="container-fluid">
+
+        <div class="admin-manage-header">
+
+            <div>
+                <span class="section-label">
+                    ADMIN / INGREDIENTS
+                </span>
+
+                <h1>
+                    Manage Ingredients
+                </h1>
+
+                <p>
+                    Add, edit, and manage skincare ingredients
+                    shown in the SereGlowy Ingredients Guide.
+                </p>
+            </div>
+
+            <button type="button"
+                    class="btn btn-glow">
+                + Add Ingredient
+            </button>
+
+        </div>
+
+
+        <div class="admin-toolbar">
+
+            <div class="admin-search-box">
+                <input type="text"
+                       placeholder="Search ingredients..." />
+            </div>
+
+            <div class="admin-filter-box">
+                <select>
+                    <option>All Purposes</option>
+                    <option>Hydration</option>
+                    <option>Glow</option>
+                    <option>Oil Control</option>
+                    <option>Moisture</option>
+                </select>
+            </div>
+
+        </div>
+
+
+        <div class="admin-table-wrapper">
+
+            <table class="admin-table manage-table">
+
+                <thead>
+                    <tr>
+                        <th>Ingredient</th>
+                        <th>Purpose</th>
+                        <th>Suitable Skin</th>
+                        <th>Related Products</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>
+                            <strong>
+                                Hyaluronic Acid
+                            </strong>
+                        </td>
+
+                        <td>
+                            Hydration
+                        </td>
+
+                        <td>
+                            Dry / Normal
+                        </td>
+
+                        <td>
+                            10 Products
+                        </td>
+
+                        <td>
+                            <div class="admin-action-buttons">
+
+                                <button type="button"
+                                        class="admin-edit-btn">
+                                    Edit
+                                </button>
+
+                                <button type="button"
+                                        class="admin-delete-btn">
+                                    Delete
+                                </button>
+
+                            </div>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            <strong>
+                                Niacinamide
+                            </strong>
+                        </td>
+
+                        <td>
+                            Oil Control
+                        </td>
+
+                        <td>
+                            Oily / Combination
+                        </td>
+
+                        <td>
+                            8 Products
+                        </td>
+
+                        <td>
+                            <div class="admin-action-buttons">
+
+                                <button type="button"
+                                        class="admin-edit-btn">
+                                    Edit
+                                </button>
+
+                                <button type="button"
+                                        class="admin-delete-btn">
+                                    Delete
+                                </button>
+
+                            </div>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            <strong>
+                                Vitamin C
+                            </strong>
+                        </td>
+
+                        <td>
+                            Glow
+                        </td>
+
+                        <td>
+                            Normal / Combination
+                        </td>
+
+                        <td>
+                            7 Products
+                        </td>
+
+                        <td>
+                            <div class="admin-action-buttons">
+
+                                <button type="button"
+                                        class="admin-edit-btn">
+                                    Edit
+                                </button>
+
+                                <button type="button"
+                                        class="admin-delete-btn">
+                                    Delete
+                                </button>
+
+                            </div>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            <strong>
+                                Ceramides
+                            </strong>
+                        </td>
+
+                        <td>
+                            Moisture
+                        </td>
+
+                        <td>
+                            Dry / Normal
+                        </td>
+
+                        <td>
+                            6 Products
+                        </td>
+
+                        <td>
+                            <div class="admin-action-buttons">
+
+                                <button type="button"
+                                        class="admin-edit-btn">
+                                    Edit
+                                </button>
+
+                                <button type="button"
+                                        class="admin-delete-btn">
+                                    Delete
+                                </button>
+
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+</section>

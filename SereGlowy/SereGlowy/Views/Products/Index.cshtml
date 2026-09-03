@@ -1,0 +1,356 @@
+﻿@{
+    ViewData["Title"] = "Products";
+}
+
+<section class="products-hero">
+    <div class="container text-center">
+
+        <span class="section-label">
+            DISCOVER YOUR MATCH
+        </span>
+
+        <h1>
+            Skincare made easier to explore.
+        </h1>
+
+        <p>
+            Browse skincare products, explore categories,
+            and discover options that match your skin preferences.
+        </p>
+
+    </div>
+</section>
+
+
+<section class="products-section">
+    <div class="container">
+
+        <div class="products-toolbar">
+
+            <div class="product-search">
+                <input type="text"
+                       placeholder="Search products..." />
+            </div>
+
+            <div class="product-filter">
+                <select>
+                    <option>All Categories</option>
+                    <option>Cleanser</option>
+                    <option>Serum</option>
+                    <option>Moisturizer</option>
+                    <option>Sunscreen</option>
+                </select>
+            </div>
+
+        </div>
+
+
+        <div class="row g-4 mt-2">
+
+            <div class="col-md-6 col-lg-4">
+                <div class="product-card">
+
+                    <div class="product-image">
+                        <span class="product-tag">
+                            Cleanser
+                        </span>
+
+                        <div class="image-placeholder">
+                            Product Image
+                        </div>
+                    </div>
+
+                    <div class="product-content">
+
+                        <span class="product-brand">
+                            CeraVe
+                        </span>
+
+                        <h3>
+                            Hydrating Facial Cleanser
+                        </h3>
+
+                        <p>
+                            A gentle cleanser designed for
+                            a simple everyday skincare routine.
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <span class="product-price">
+                                12.00 JOD
+                            </span>
+
+                            <a asp-controller="Products"
+                               asp-action="Details"
+                               asp-route-id="1"
+                               class="product-link">
+                                View Details →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+                <div class="product-card">
+
+                    <div class="product-image">
+
+                        <span class="product-tag">
+                            Serum
+                        </span>
+
+                        <div class="image-placeholder">
+                            Product Image
+                        </div>
+
+                    </div>
+
+                    <div class="product-content">
+
+                        <span class="product-brand">
+                            The Ordinary
+                        </span>
+
+                        <h3>
+                            Niacinamide Serum
+                        </h3>
+
+                        <p>
+                            A lightweight serum for users
+                            looking to build a simple routine.
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <span class="product-price">
+                                10.00 JOD
+                            </span>
+
+                            <a asp-controller="Products"
+                               asp-action="Details"
+                               asp-route-id="2"
+                               class="product-link">
+                                View Details →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+                <div class="product-card">
+
+                    <div class="product-image">
+
+                        <span class="product-tag">
+                            Moisturizer
+                        </span>
+
+                        <div class="image-placeholder">
+                            Product Image
+                        </div>
+
+                    </div>
+
+                    <div class="product-content">
+
+                        <span class="product-brand">
+                            La Roche-Posay
+                        </span>
+
+                        <h3>
+                            Hydrating Moisturizer
+                        </h3>
+
+                        <p>
+                            A simple moisturizing option
+                            for daily skincare routines.
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <span class="product-price">
+                                18.00 JOD
+                            </span>
+
+                            <a asp-controller="Products"
+                               asp-action="Details"
+                               asp-route-id="3"
+                               class="product-link">
+                                View Details →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+                <div class="product-card">
+
+                    <div class="product-image">
+
+                        <span class="product-tag">
+                            Sunscreen
+                        </span>
+
+                        <div class="image-placeholder">
+                            Product Image
+                        </div>
+
+                    </div>
+
+                    <div class="product-content">
+
+                        <span class="product-brand">
+                            Beauty of Joseon
+                        </span>
+
+                        <h3>
+                            Relief Sun SPF
+                        </h3>
+
+                        <p>
+                            An everyday sunscreen option
+                            to complete a morning routine.
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <span class="product-price">
+                                15.00 JOD
+                            </span>
+
+                            <a asp-controller="Products"
+                               asp-action="Details"
+                               asp-route-id="4"
+                               class="product-link">
+                                View Details →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+                <div class="product-card">
+
+                    <div class="product-image">
+
+                        <span class="product-tag">
+                            Serum
+                        </span>
+
+                        <div class="image-placeholder">
+                            Product Image
+                        </div>
+
+                    </div>
+
+                    <div class="product-content">
+
+                        <span class="product-brand">
+                            COSRX
+                        </span>
+
+                        <h3>
+                            Hydrating Serum
+                        </h3>
+
+                        <p>
+                            A lightweight serum for
+                            hydration-focused routines.
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <span class="product-price">
+                                17.00 JOD
+                            </span>
+
+                            <a asp-controller="Products"
+                               asp-action="Details"
+                               asp-route-id="5"
+                               class="product-link">
+                                View Details →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+                <div class="product-card">
+
+                    <div class="product-image">
+
+                        <span class="product-tag">
+                            Moisturizer
+                        </span>
+
+                        <div class="image-placeholder">
+                            Product Image
+                        </div>
+
+                    </div>
+
+                    <div class="product-content">
+
+                        <span class="product-brand">
+                            The Inkey List
+                        </span>
+
+                        <h3>
+                            Daily Moisturizer
+                        </h3>
+
+                        <p>
+                            A simple moisturizer designed
+                            for an easy daily routine.
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <span class="product-price">
+                                14.00 JOD
+                            </span>
+
+                            <a asp-controller="Products"
+                               asp-action="Details"
+                               asp-route-id="6"
+                               class="product-link">
+                                View Details →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>

@@ -1,0 +1,295 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center min-vh-75">
+
+            <div class="col-lg-6 hero-content">
+
+                <span class="hero-badge">
+                    ✨ Your Personalized Glow Journey
+                </span>
+
+                <h1>
+                    Skincare that feels
+                    <span>made for you.</span>
+                </h1>
+
+                <p class="hero-text">
+                    Build your skin profile, discover a simple personalized
+                    routine, and explore products that match your skincare
+                    preferences.
+                </p>
+
+                <div class="hero-buttons">
+                    <a asp-controller="Onboarding"
+                       asp-action="Index"
+                       class="btn btn-glow">
+                        Build My Skin Profile
+                    </a>
+
+                    <a href="#how-it-works"
+                       class="btn btn-outline-glow">
+                        Explore SereGlowy
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+                <div class="hero-visual">
+
+                    <div class="glow-circle glow-one"></div>
+                    <div class="glow-circle glow-two"></div>
+
+                    <div class="skin-card">
+                        <span class="card-icon">✦</span>
+
+                        <p class="small-title">
+                            Your Skin Profile
+                        </p>
+
+                        <h3>
+                            Your glow starts with you.
+                        </h3>
+
+                        <p>
+                            Answer a few simple questions and let
+                            SereGlowy create an experience based
+                            on your preferences.
+                        </p>
+
+                        <div class="profile-items">
+                            <span>Skin Type</span>
+                            <span>Goals</span>
+                            <span>Routine</span>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<section class="how-section" id="how-it-works">
+    <div class="container">
+
+        <div class="section-heading text-center">
+            <span>HOW IT WORKS</span>
+
+            <h2>
+                A simpler way to find your glow
+            </h2>
+
+            <p>
+                A few simple steps to make your skincare journey
+                feel more personal and organized.
+            </p>
+        </div>
+
+        <div class="row g-4 mt-4">
+
+            <div class="col-md-4">
+                <div class="step-card">
+
+                    <div class="step-number">01</div>
+
+                    <h4>Tell us about your skin</h4>
+
+                    <p>
+                        Complete a short questionnaire about your
+                        skin type, preferences and skincare goals.
+                    </p>
+
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="step-card">
+
+                    <div class="step-number">02</div>
+
+                    <h4>Get your routine</h4>
+
+                    <p>
+                        Receive a simple morning and evening routine
+                        based on your personal skin profile.
+                    </p>
+
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="step-card">
+
+                    <div class="step-number">03</div>
+
+                    <h4>Discover your matches</h4>
+
+                    <p>
+                        Explore skincare products and ingredients
+                        that match your selected preferences.
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<section class="explore-section">
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-5">
+                <span class="section-label">
+                    EXPLORE SKINCARE
+                </span>
+
+                <h2>
+                    Everything your routine needs,
+                    all in one place.
+                </h2>
+
+                <p>
+                    Explore skincare essentials, learn about common
+                    ingredients and keep your own products organized.
+                </p>
+
+                <a href="#"
+                   class="btn btn-glow">
+                    Explore Products
+                </a>
+            </div>
+
+            <div class="col-lg-7">
+
+                <div class="category-grid">
+
+                    <div class="category-card">
+                        <span>01</span>
+                        <h4>Cleanser</h4>
+                        <p>Start fresh.</p>
+                    </div>
+
+                    <div class="category-card">
+                        <span>02</span>
+                        <h4>Serum</h4>
+                        <p>Target your goals.</p>
+                    </div>
+
+                    <div class="category-card">
+                        <span>03</span>
+                        <h4>Moisturizer</h4>
+                        <p>Keep your skin hydrated.</p>
+                    </div>
+
+                    <div class="category-card">
+                        <span>04</span>
+                        <h4>Sunscreen</h4>
+                        <p>Your everyday essential.</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<section class="features-section">
+    <div class="container">
+
+        <div class="row g-4">
+
+            <div class="col-md-6">
+                <div class="feature-large-card">
+
+                    <span class="section-label">
+                        INGREDIENTS GUIDE
+                    </span>
+
+                    <h3>
+                        Know what’s inside your skincare.
+                    </h3>
+
+                    <p>
+                        Explore common skincare ingredients,
+                        understand their purpose and discover
+                        related products.
+                    </p>
+
+                    <a href="#">
+                        Explore Ingredients →
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="feature-large-card makeup-card">
+
+                    <span class="section-label">
+                        MAKEUP MATCH
+                    </span>
+
+                    <h3>
+                        Makeup that works with your preferences.
+                    </h3>
+
+                    <p>
+                        Explore makeup options based on skin type,
+                        finish preference and your SereGlowy profile.
+                    </p>
+
+                    <a href="#">
+                        Find Your Match →
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<section class="final-cta">
+    <div class="container">
+
+        <div class="cta-box text-center">
+
+            <span>✦ SEREGLOWY ✦</span>
+
+            <h2>
+                Ready to start your glow journey?
+            </h2>
+
+            <p>
+                Create your skin profile and build a routine
+                that feels more like you.
+            </p>
+
+            <a href="#"
+               class="btn btn-light-glow">
+                Get Started
+            </a>
+
+        </div>
+
+    </div>
+</section>

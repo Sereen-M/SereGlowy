@@ -1,0 +1,366 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<section class="admin-dashboard-page">
+    <div class="container-fluid">
+
+        <div class="admin-dashboard-header">
+            <div>
+                <span class="section-label">
+                    ADMIN PANEL
+                </span>
+
+                <h1>
+                    SereGlowy Dashboard
+                </h1>
+
+                <p>
+                    Manage users, products, ingredients, categories,
+                    and makeup content from one place.
+                </p>
+            </div>
+
+            <div class="admin-header-badge">
+                <span>✦</span>
+                Admin
+            </div>
+        </div>
+
+
+        <!-- Statistics -->
+
+        <div class="row g-4 mt-2">
+
+            <div class="col-md-6 col-xl-3">
+                <div class="admin-stat-card">
+
+                    <span class="admin-stat-label">
+                        USERS
+                    </span>
+
+                    <strong>
+                        120
+                    </strong>
+
+                    <p>
+                        Registered users
+                    </p>
+
+                </div>
+            </div>
+
+
+            <div class="col-md-6 col-xl-3">
+                <div class="admin-stat-card">
+
+                    <span class="admin-stat-label">
+                        PRODUCTS
+                    </span>
+
+                    <strong>
+                        48
+                    </strong>
+
+                    <p>
+                        Skincare products
+                    </p>
+
+                </div>
+            </div>
+
+
+            <div class="col-md-6 col-xl-3">
+                <div class="admin-stat-card">
+
+                    <span class="admin-stat-label">
+                        INGREDIENTS
+                    </span>
+
+                    <strong>
+                        32
+                    </strong>
+
+                    <p>
+                        Ingredients in guide
+                    </p>
+
+                </div>
+            </div>
+
+
+            <div class="col-md-6 col-xl-3">
+                <div class="admin-stat-card">
+
+                    <span class="admin-stat-label">
+                        MAKEUP
+                    </span>
+
+                    <strong>
+                        25
+                    </strong>
+
+                    <p>
+                        Makeup products
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- Management -->
+
+        <div class="admin-management-section">
+
+            <div class="admin-section-title">
+                <span class="section-label">
+                    MANAGEMENT
+                </span>
+
+                <h2>
+                    Manage SereGlowy
+                </h2>
+            </div>
+
+
+            <div class="row g-4">
+
+                <div class="col-md-6 col-xl-4">
+
+                    <a href="#"
+                       class="admin-management-card">
+
+                        <span class="admin-card-icon">
+                            ✦
+                        </span>
+
+                        <h3>
+                            Products
+                        </h3>
+
+                        <p>
+                            Add, edit, remove, and manage skincare products.
+                        </p>
+
+                        <span class="admin-card-link">
+                            Manage Products →
+                        </span>
+
+                    </a>
+
+                </div>
+
+
+                <div class="col-md-6 col-xl-4">
+
+                    <a asp-controller="Admin"
+                       asp-action="Products"
+                       class="admin-management-card">
+
+                        <span class="admin-card-icon">
+                            ◇
+                        </span>
+
+                        <h3>
+                            Categories
+                        </h3>
+
+                        <p>
+                            Organize skincare products into categories.
+                        </p>
+
+                        <span class="admin-card-link">
+                            Manage Categories →
+                        </span>
+
+                    </a>
+
+                </div>
+
+
+                <div class="col-md-6 col-xl-4">
+
+                    <a asp-controller="Admin"
+                       asp-action="Categories"
+                       class="admin-management-card">
+
+                        <span class="admin-card-icon">
+                            ✧
+                        </span>
+
+                        <h3>
+                            Ingredients
+                        </h3>
+
+                        <p>
+                            Manage ingredient information and skincare purposes.
+                        </p>
+
+                        <span class="admin-card-link">
+                            Manage Ingredients →
+                        </span>
+
+                    </a>
+
+                </div>
+
+
+                <div class="col-md-6 col-xl-4">
+                    <a asp-controller="Admin"
+                       asp-action="Ingredients"
+                       class="admin-management-card">
+
+                        <span class="admin-card-icon">
+                            ♡
+                        </span>
+
+                        <h3>
+                            Makeup Products
+                        </h3>
+
+                        <p>
+                            Manage makeup items used in Makeup Match.
+                        </p>
+
+                        <span class="admin-card-link">
+                            Manage Makeup →
+                        </span>
+
+                    </a>
+
+                </div>
+
+
+                <div class="col-md-6 col-xl-4">
+
+                    <a asp-controller="Admin"
+                       asp-action="MakeupProducts"
+                       class="admin-management-card">
+
+                        <span class="admin-card-icon">
+                            ◌
+                        </span>
+
+                        <h3>
+                            Users
+                        </h3>
+
+                        <p>
+                            View and manage registered SereGlowy users.
+                        </p>
+
+                        <span class="admin-card-link">
+                            Manage Users →
+                        </span>
+
+                    </a>
+
+                </div>
+
+
+                <div class="col-md-6 col-xl-4">
+
+                    <a asp-controller="Admin"
+                       asp-action="Users"
+                       class="admin-management-card">
+
+                        <span class="admin-card-icon">
+                            ☼
+                        </span>
+
+                        <h3>
+                            Routine Rules
+                        </h3>
+
+                        <p>
+                            Manage routine recommendations used by the system.
+                        </p>
+
+                        <span class="admin-card-link">
+                            Manage Routines →
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Recent Content -->
+
+        <div class="admin-recent-section">
+
+            <div class="admin-section-title">
+                <span class="section-label">
+                    OVERVIEW
+                </span>
+
+                <h2>
+                    Recent Content
+                </h2>
+            </div>
+
+
+            <div class="admin-table-wrapper">
+
+                <table class="admin-table">
+
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Status</th>
+                            <th>Updated</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>Hydrating Facial Cleanser</td>
+                            <td>Product</td>
+                            <td>
+                                <span class="admin-status active">
+                                    Active
+                                </span>
+                            </td>
+                            <td>Today</td>
+                        </tr>
+
+                        <tr>
+                            <td>Niacinamide</td>
+                            <td>Ingredient</td>
+                            <td>
+                                <span class="admin-status active">
+                                    Active
+                                </span>
+                            </td>
+                            <td>Yesterday</td>
+                        </tr>
+
+                        <tr>
+                            <td>Liquid Foundation</td>
+                            <td>Makeup</td>
+                            <td>
+                                <span class="admin-status active">
+                                    Active
+                                </span>
+                            </td>
+                            <td>2 days ago</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>

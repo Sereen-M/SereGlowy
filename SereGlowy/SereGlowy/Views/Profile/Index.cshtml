@@ -1,0 +1,248 @@
+﻿@{
+    ViewData["Title"] = "My Profile";
+}
+
+<section class="user-profile-page">
+    <div class="container">
+
+        <div class="user-profile-header text-center">
+
+            <span class="section-label">
+                MY PROFILE
+            </span>
+
+            <h1>
+                Your SereGlowy space.
+            </h1>
+
+            <p>
+                Manage your account information and quickly access
+                your skin profile, routine, and saved products.
+            </p>
+
+        </div>
+
+
+        <div class="user-profile-wrapper">
+
+            <!-- Profile Top -->
+
+            <div class="user-profile-top">
+
+                <div class="profile-avatar">
+                    S
+                </div>
+
+                <div class="profile-name">
+
+                    <span>
+                        SEREGLOWY MEMBER
+                    </span>
+
+                    <h2>
+                        Sereen
+                    </h2>
+
+                    <p>
+                        sereen@example.com
+                    </p>
+
+                </div>
+
+                <button type="button"
+                        class="edit-profile-btn">
+                    Edit Profile
+                </button>
+
+            </div>
+
+
+            <!-- Account Information -->
+
+            <div class="profile-section">
+
+                <div class="profile-section-title">
+
+                    <span class="section-label">
+                        ACCOUNT INFORMATION
+                    </span>
+
+                    <h3>
+                        Personal Details
+                    </h3>
+
+                </div>
+
+
+                <div class="row g-4">
+
+                    <div class="col-md-6">
+                        <div class="account-info-box">
+
+                            <span>First Name</span>
+
+                            <strong>
+                                Sereen
+                            </strong>
+
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <div class="account-info-box">
+
+                            <span>Last Name</span>
+
+                            <strong>
+                                User
+                            </strong>
+
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <div class="account-info-box">
+
+                            <span>Email</span>
+
+                            <strong>
+                                sereen@example.com
+                            </strong>
+
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <div class="account-info-box">
+
+                            <span>Account Type</span>
+
+                            <strong>
+                                User
+                            </strong>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Quick Access -->
+
+            <div class="profile-section">
+
+                <div class="profile-section-title">
+
+                    <span class="section-label">
+                        YOUR GLOW
+                    </span>
+
+                    <h3>
+                        Quick Access
+                    </h3>
+
+                </div>
+
+
+                <div class="row g-4">
+
+                    <div class="col-md-4">
+
+                        <a asp-controller="SkinProfile"
+                           asp-action="Index"
+                           class="profile-quick-card">
+
+                            <span class="profile-quick-icon">
+                                ✦
+                            </span>
+
+                            <h4>
+                                Skin Profile
+                            </h4>
+
+                            <p>
+                                View your skincare preferences.
+                            </p>
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <a asp-controller="Routine"
+                           asp-action="Index"
+                           class="profile-quick-card">
+
+                            <span class="profile-quick-icon">
+                                ☼
+                            </span>
+
+                            <h4>
+                                My Routine
+                            </h4>
+
+                            <p>
+                                View your personalized routine.
+                            </p>
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <a asp-controller="MyProducts"
+                           asp-action="Index"
+                           class="profile-quick-card">
+
+                            <span class="profile-quick-icon">
+                                ♡
+                            </span>
+
+                            <h4>
+                                My Products
+                            </h4>
+
+                            <p>
+                                Manage your saved skincare products.
+                            </p>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Profile Actions -->
+
+            <div class="profile-bottom-actions">
+
+                <a asp-controller="Onboarding"
+                   asp-action="Index"
+                   class="btn btn-outline-glow">
+                    Update Skin Answers
+                </a>
+
+                <a asp-area="Identity"
+                   asp-page="/Account/Logout"
+                   class="btn btn-glow">
+                    Logout
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>

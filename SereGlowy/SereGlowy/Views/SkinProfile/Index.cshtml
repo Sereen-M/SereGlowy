@@ -1,0 +1,174 @@
+﻿@{
+    ViewData["Title"] = "My Skin Profile";
+}
+
+<section class="skin-profile-page">
+
+    <div class="container">
+
+        <div class="profile-page-header text-center">
+
+            <span class="section-label">
+                YOUR SKIN PROFILE
+            </span>
+
+            <h1>
+                Your glow, your profile.
+            </h1>
+
+            <p>
+                Based on your answers, here’s a simple overview
+                of your SereGlowy preferences.
+            </p>
+
+        </div>
+
+
+        <div class="skin-profile-card">
+
+            <div class="profile-card-top">
+
+                <div>
+                    <span class="profile-small">
+                        SEREGLOWY PROFILE
+                    </span>
+
+                    <h2>
+                        Your Skin Summary
+                    </h2>
+                </div>
+
+                <div class="profile-sparkle">
+                    ✦
+                </div>
+
+            </div>
+
+
+            <div class="row g-4 mt-2">
+
+                <div class="col-md-6">
+                    <div class="profile-info-box">
+
+                        <span>Skin Type</span>
+
+                        <strong>
+                            Combination
+                        </strong>
+
+                        <p>
+                            A mix of oily and dry areas.
+                        </p>
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="profile-info-box">
+
+                        <span>Sensitivity</span>
+
+                        <strong>
+                            Not Sensitive
+                        </strong>
+
+                        <p>
+                            Your skin usually feels comfortable.
+                        </p>
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="profile-info-box">
+
+                        <span>Main Goal</span>
+
+                        <strong>
+                            Glow
+                        </strong>
+
+                        <p>
+                            Your routine can focus on brighter-looking skin.
+                        </p>
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="profile-info-box">
+
+                        <span>Routine Level</span>
+
+                        <strong>
+                            Simple Routine
+                        </strong>
+
+                        <p>
+                            A few easy steps work best for your preference.
+                        </p>
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="profile-info-box">
+
+                        <span>Makeup Usage</span>
+
+                        <strong>
+                            Sometimes
+                        </strong>
+
+                        <p>
+                            Makeup is part of your routine on some days.
+                        </p>
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="profile-info-box profile-highlight">
+
+                        <span>Your Next Step</span>
+
+                        <strong>
+                            Build Your Routine
+                        </strong>
+
+                        <p>
+                            Explore your personalized morning and evening steps.
+                        </p>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="profile-actions">
+
+                <a asp-controller="Onboarding"
+                   asp-action="Index"
+                   class="btn btn-outline-glow">
+                    Edit My Answers
+                </a>
+
+                <a asp-controller="Routine"
+                   asp-action="Index"
+                   class="btn btn-glow">
+                    View My Routine
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

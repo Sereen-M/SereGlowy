@@ -1,0 +1,223 @@
+﻿@{
+    ViewData["Title"] = "Manage Users";
+}
+
+<section class="admin-manage-page">
+    <div class="container-fluid">
+
+        <div class="admin-manage-header">
+
+            <div>
+                <span class="section-label">
+                    ADMIN / USERS
+                </span>
+
+                <h1>
+                    Manage Users
+                </h1>
+
+                <p>
+                    View registered users and manage their account status
+                    and role inside SereGlowy.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="admin-toolbar">
+
+            <div class="admin-search-box">
+                <input type="text"
+                       placeholder="Search users..." />
+            </div>
+
+            <div class="admin-filter-box">
+                <select>
+                    <option>All Roles</option>
+                    <option>User</option>
+                    <option>Admin</option>
+                </select>
+            </div>
+
+        </div>
+
+
+        <div class="admin-table-wrapper">
+
+            <table class="admin-table manage-table">
+
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Skin Profile</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>
+                            <div class="admin-user-info">
+
+                                <div class="admin-user-avatar">
+                                    S
+                                </div>
+
+                                <strong>
+                                    Sereen
+                                </strong>
+
+                            </div>
+                        </td>
+
+                        <td>
+                            sereen@example.com
+                        </td>
+
+                        <td>
+                            User
+                        </td>
+
+                        <td>
+                            Completed
+                        </td>
+
+                        <td>
+                            <span class="admin-status active">
+                                Active
+                            </span>
+                        </td>
+
+                        <td>
+                            <div class="admin-action-buttons">
+
+                                <button type="button"
+                                        class="admin-edit-btn">
+                                    View
+                                </button>
+
+                                <button type="button"
+                                        class="admin-delete-btn">
+                                    Deactivate
+                                </button>
+
+                            </div>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <div class="admin-user-info">
+
+                                <div class="admin-user-avatar">
+                                    L
+                                </div>
+
+                                <strong>
+                                    Lina
+                                </strong>
+
+                            </div>
+                        </td>
+
+                        <td>
+                            lina@example.com
+                        </td>
+
+                        <td>
+                            User
+                        </td>
+
+                        <td>
+                            Completed
+                        </td>
+
+                        <td>
+                            <span class="admin-status active">
+                                Active
+                            </span>
+                        </td>
+
+                        <td>
+                            <div class="admin-action-buttons">
+
+                                <button type="button"
+                                        class="admin-edit-btn">
+                                    View
+                                </button>
+
+                                <button type="button"
+                                        class="admin-delete-btn">
+                                    Deactivate
+                                </button>
+
+                            </div>
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            <div class="admin-user-info">
+
+                                <div class="admin-user-avatar">
+                                    A
+                                </div>
+
+                                <strong>
+                                    Admin
+                                </strong>
+
+                            </div>
+                        </td>
+
+                        <td>
+                            admin@sereglowy.com
+                        </td>
+
+                        <td>
+                            Admin
+                        </td>
+
+                        <td>
+                            —
+                        </td>
+
+                        <td>
+                            <span class="admin-status active">
+                                Active
+                            </span>
+                        </td>
+
+                        <td>
+                            <div class="admin-action-buttons">
+
+                                <button type="button"
+                                        class="admin-edit-btn">
+                                    View
+                                </button>
+
+                            </div>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+</section>

@@ -1,0 +1,295 @@
+﻿@{
+    ViewData["Title"] = "Recommended Products";
+}
+
+<section class="recommended-page">
+
+    <div class="container">
+
+        <div class="recommended-header text-center">
+
+            <span class="section-label">
+                YOUR SEREGLOWY MATCHES
+            </span>
+
+            <h1>
+                Products picked for your profile.
+            </h1>
+
+            <p>
+                Based on your skin type, skincare goal, and routine preferences,
+                these products may fit your SereGlowy profile.
+            </p>
+
+        </div>
+
+
+        <!-- Profile Summary -->
+
+        <div class="recommended-profile">
+
+            <span>
+                Skin Type:
+                <strong>Combination</strong>
+            </span>
+
+            <span>
+                Goal:
+                <strong>Glow</strong>
+            </span>
+
+            <span>
+                Routine:
+                <strong>Simple</strong>
+            </span>
+
+        </div>
+
+
+        <!-- Product Cards -->
+
+        <div class="row g-4 mt-3">
+
+
+            <!-- PRODUCT 1 -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="recommended-card">
+
+                    <div class="recommended-image">
+
+                        <span class="match-badge">
+                            ✦ Recommended
+                        </span>
+
+                        <div class="image-placeholder">
+                            Product Image
+                        </div>
+
+                    </div>
+
+
+                    <div class="recommended-content">
+
+                        <span class="product-brand">
+                            CeraVe
+                        </span>
+
+                        <h3>
+                            Hydrating Facial Cleanser
+                        </h3>
+
+                        <p>
+                            A gentle cleanser that fits a simple
+                            combination-skin routine.
+                        </p>
+
+
+                        <div class="why-match">
+
+                            <span>
+                                Why it matches
+                            </span>
+
+                            <small>
+                                Simple cleanser • Daily routine
+                            </small>
+
+                        </div>
+
+
+                        <div class="recommended-bottom">
+
+                            <span class="product-price">
+                                12.00 JOD
+                            </span>
+
+                            <a asp-controller="Products"
+                               asp-action="Details"
+                               asp-route-id="1">
+                                View Details →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 2 -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="recommended-card">
+
+                    <div class="recommended-image">
+
+                        <span class="match-badge">
+                            ✦ Recommended
+                        </span>
+
+                        <div class="image-placeholder">
+                            Product Image
+                        </div>
+
+                    </div>
+
+
+                    <div class="recommended-content">
+
+                        <span class="product-brand">
+                            The Ordinary
+                        </span>
+
+                        <h3>
+                            Niacinamide Serum
+                        </h3>
+
+                        <p>
+                            A lightweight serum that fits
+                            a glow-focused skincare routine.
+                        </p>
+
+
+                        <div class="why-match">
+
+                            <span>
+                                Why it matches
+                            </span>
+
+                            <small>
+                                Combination Skin • Glow
+                            </small>
+
+                        </div>
+
+
+                        <div class="recommended-bottom">
+
+                            <span class="product-price">
+                                10.00 JOD
+                            </span>
+
+                            <a asp-controller="Products"
+                               asp-action="Details"
+                               asp-route-id="2">
+                                View Details →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 3 -->
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="recommended-card">
+
+                    <div class="recommended-image">
+
+                        <span class="match-badge">
+                            ✦ Recommended
+                        </span>
+
+                        <div class="image-placeholder">
+                            Product Image
+                        </div>
+
+                    </div>
+
+
+                    <div class="recommended-content">
+
+                        <span class="product-brand">
+                            Beauty of Joseon
+                        </span>
+
+                        <h3>
+                            Relief Sun SPF
+                        </h3>
+
+                        <p>
+                            A sunscreen option to complete
+                            your personalized morning routine.
+                        </p>
+
+
+                        <div class="why-match">
+
+                            <span>
+                                Why it matches
+                            </span>
+
+                            <small>
+                                Morning Routine • Daily Step
+                            </small>
+
+                        </div>
+
+
+                        <div class="recommended-bottom">
+
+                            <span class="product-price">
+                                15.00 JOD
+                            </span>
+
+                            <a asp-controller="Products"
+                               asp-action="Details"
+                               asp-route-id="3">
+                                View Details →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Explore More -->
+
+        <div class="recommended-more">
+
+            <div>
+
+                <span class="section-label">
+                    WANT MORE OPTIONS?
+                </span>
+
+                <h2>
+                    Explore the full skincare collection.
+                </h2>
+
+                <p>
+                    Browse all available products and discover
+                    more skincare options.
+                </p>
+
+            </div>
+
+
+            <a asp-controller="Products"
+               asp-action="Index"
+               class="btn btn-glow">
+                Browse All Products
+            </a>
+
+        </div>
+
+    </div>
+
+</section>

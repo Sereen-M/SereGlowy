@@ -1,0 +1,240 @@
+﻿@{
+    ViewData["Title"] = "My Routine";
+}
+
+<section class="routine-page">
+    <div class="container">
+
+        <div class="routine-header text-center">
+            <span class="section-label">YOUR PERSONALIZED ROUTINE</span>
+
+            <h1>
+                A simple routine, made for your glow.
+            </h1>
+
+            <p>
+                Based on your SereGlowy skin profile, here is a simple
+                morning and evening routine to help keep your skincare organized.
+            </p>
+        </div>
+
+
+        <div class="routine-profile-summary">
+            <span>Skin Type: <strong>Combination</strong></span>
+            <span>Goal: <strong>Glow</strong></span>
+            <span>Routine Level: <strong>Simple</strong></span>
+        </div>
+
+
+        <div class="row g-4 mt-3">
+
+            <!-- Morning Routine -->
+            <div class="col-lg-6">
+
+                <div class="routine-card">
+
+                    <div class="routine-card-header">
+
+                        <div>
+                            <span class="routine-time-label">
+                                MORNING
+                            </span>
+
+                            <h2>
+                                Morning Routine
+                            </h2>
+                        </div>
+
+                        <div class="routine-icon">
+                            ☀
+                        </div>
+
+                    </div>
+
+
+                    <div class="routine-step">
+
+                        <div class="routine-step-number">
+                            01
+                        </div>
+
+                        <div>
+                            <h4>Gentle Cleanser</h4>
+
+                            <p>
+                                Start your morning with a simple cleanser
+                                to refresh your skin.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="routine-step">
+
+                        <div class="routine-step-number">
+                            02
+                        </div>
+
+                        <div>
+                            <h4>Hydrating Serum</h4>
+
+                            <p>
+                                Add a lightweight serum focused on hydration
+                                and a comfortable skin feel.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="routine-step">
+
+                        <div class="routine-step-number">
+                            03
+                        </div>
+
+                        <div>
+                            <h4>Moisturizer</h4>
+
+                            <p>
+                                Follow with a moisturizer that fits
+                                your skin preferences.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="routine-step">
+
+                        <div class="routine-step-number">
+                            04
+                        </div>
+
+                        <div>
+                            <h4>Sunscreen</h4>
+
+                            <p>
+                                Finish your morning routine with sunscreen.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Evening Routine -->
+            <div class="col-lg-6">
+
+                <div class="routine-card">
+
+                    <div class="routine-card-header">
+
+                        <div>
+                            <span class="routine-time-label">
+                                EVENING
+                            </span>
+
+                            <h2>
+                                Evening Routine
+                            </h2>
+                        </div>
+
+                        <div class="routine-icon">
+                            ☾
+                        </div>
+
+                    </div>
+
+
+                    <div class="routine-step">
+
+                        <div class="routine-step-number">
+                            01
+                        </div>
+
+                        <div>
+                            <h4>Cleanser</h4>
+
+                            <p>
+                                Clean your skin and remove products
+                                from the day.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="routine-step">
+
+                        <div class="routine-step-number">
+                            02
+                        </div>
+
+                        <div>
+                            <h4>Serum</h4>
+
+                            <p>
+                                Use a serum that matches your selected
+                                skincare goal.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="routine-step">
+
+                        <div class="routine-step-number">
+                            03
+                        </div>
+
+                        <div>
+                            <h4>Moisturizer</h4>
+
+                            <p>
+                                Complete your evening routine with
+                                a comfortable moisturizer.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="routine-next">
+
+            <div>
+                <span class="section-label">
+                    NEXT STEP
+                </span>
+
+                <h2>
+                    Find products for your routine.
+                </h2>
+
+                <p>
+                    Explore skincare products that match your profile
+                    and routine preferences.
+                </p>
+            </div>
+
+            <a asp-controller="Products"
+               asp-action="Recommended"
+               class="btn btn-glow">
+                View Recommended Products
+            </a>
+
+        </div>
+
+    </div>
+</section>

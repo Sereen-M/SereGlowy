@@ -1,0 +1,184 @@
+﻿@{
+    ViewData["Title"] = "Manage Makeup Products";
+}
+
+<section class="admin-manage-page">
+    <div class="container-fluid">
+
+        <div class="admin-manage-header">
+
+            <div>
+                <span class="section-label">
+                    ADMIN / MAKEUP
+                </span>
+
+                <h1>
+                    Manage Makeup Products
+                </h1>
+
+                <p>
+                    Manage the makeup items shown in the
+                    SereGlowy Makeup Match experience.
+                </p>
+            </div>
+
+            <button type="button"
+                    class="btn btn-glow">
+                + Add Makeup Product
+            </button>
+
+        </div>
+
+
+        <div class="admin-toolbar">
+
+            <div class="admin-search-box">
+                <input type="text"
+                       placeholder="Search makeup products..." />
+            </div>
+
+            <div class="admin-filter-box">
+                <select>
+                    <option>All Categories</option>
+                    <option>Foundation</option>
+                    <option>Primer</option>
+                    <option>Concealer</option>
+                </select>
+            </div>
+
+        </div>
+
+
+        <div class="admin-table-wrapper">
+
+            <table class="admin-table manage-table">
+
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Brand</th>
+                        <th>Category</th>
+                        <th>Finish</th>
+                        <th>Suitable Skin</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>
+                            <strong>
+                                Liquid Touch Foundation
+                            </strong>
+                        </td>
+
+                        <td>Rare Beauty</td>
+                        <td>Foundation</td>
+                        <td>Natural</td>
+                        <td>Combination</td>
+
+                        <td>
+                            <span class="admin-status active">
+                                Active
+                            </span>
+                        </td>
+
+                        <td>
+                            <div class="admin-action-buttons">
+
+                                <button type="button"
+                                        class="admin-edit-btn">
+                                    Edit
+                                </button>
+
+                                <button type="button"
+                                        class="admin-delete-btn">
+                                    Delete
+                                </button>
+
+                            </div>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            <strong>
+                                Hydrating Primer
+                            </strong>
+                        </td>
+
+                        <td>e.l.f.</td>
+                        <td>Primer</td>
+                        <td>Dewy</td>
+                        <td>Dry / Normal</td>
+
+                        <td>
+                            <span class="admin-status active">
+                                Active
+                            </span>
+                        </td>
+
+                        <td>
+                            <div class="admin-action-buttons">
+
+                                <button type="button"
+                                        class="admin-edit-btn">
+                                    Edit
+                                </button>
+
+                                <button type="button"
+                                        class="admin-delete-btn">
+                                    Delete
+                                </button>
+
+                            </div>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            <strong>
+                                Soft Matte Foundation
+                            </strong>
+                        </td>
+
+                        <td>Fenty Beauty</td>
+                        <td>Foundation</td>
+                        <td>Soft Matte</td>
+                        <td>Oily / Combination</td>
+
+                        <td>
+                            <span class="admin-status inactive">
+                                Inactive
+                            </span>
+                        </td>
+
+                        <td>
+                            <div class="admin-action-buttons">
+
+                                <button type="button"
+                                        class="admin-edit-btn">
+                                    Edit
+                                </button>
+
+                                <button type="button"
+                                        class="admin-delete-btn">
+                                    Delete
+                                </button>
+
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+</section>

@@ -1,0 +1,293 @@
+﻿@{
+    ViewData["Title"] = "Build Your Skin Profile";
+}
+
+<section class="onboarding-section">
+    <div class="container">
+
+        <div class="onboarding-wrapper">
+
+            <div class="onboarding-header text-center">
+
+                <span class="section-label">
+                    YOUR SEREGLOWY PROFILE
+                </span>
+
+                <h1>
+                    Let’s get to know your skin.
+                </h1>
+
+                <p>
+                    Answer a few simple questions to help SereGlowy
+                    personalize your routine and product suggestions.
+                </p>
+
+            </div>
+
+            <div class="onboarding-progress">
+
+                <div class="progress-top">
+                    <span id="questionNumber">
+                        Question 1 of 5
+                    </span>
+
+                    <span id="progressPercentage">
+                        20%
+                    </span>
+                </div>
+
+                <div class="progress-line">
+                    <div class="progress-fill"
+                         id="progressFill">
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="question-card active-question"
+                 data-question="1">
+
+                <span class="question-small">
+                    SKIN TYPE
+                </span>
+
+                <h2>
+                    How would you describe your skin?
+                </h2>
+
+                <div class="answer-grid">
+
+                    <button type="button"
+                            class="answer-card">
+                        <strong>Dry</strong>
+                        <span>
+                            Often feels tight or needs extra moisture
+                        </span>
+                    </button>
+
+                    <button type="button"
+                            class="answer-card">
+                        <strong>Oily</strong>
+                        <span>
+                            Often feels shiny throughout the day
+                        </span>
+                    </button>
+
+                    <button type="button"
+                            class="answer-card">
+                        <strong>Combination</strong>
+                        <span>
+                            A mix of oily and dry areas
+                        </span>
+                    </button>
+
+                    <button type="button"
+                            class="answer-card">
+                        <strong>Normal</strong>
+                        <span>
+                            Generally feels balanced
+                        </span>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="question-card"
+                 data-question="2">
+
+                <span class="question-small">
+                    SENSITIVITY
+                </span>
+
+                <h2>
+                    Would you describe your skin as sensitive?
+                </h2>
+
+                <div class="answer-grid answer-grid-three">
+
+                    <button type="button"
+                            class="answer-card">
+                        <strong>Yes</strong>
+                        <span>
+                            My skin can react easily
+                        </span>
+                    </button>
+
+                    <button type="button"
+                            class="answer-card">
+                        <strong>No</strong>
+                        <span>
+                            My skin usually feels comfortable
+                        </span>
+                    </button>
+
+                    <button type="button"
+                            class="answer-card">
+                        <strong>Not Sure</strong>
+                        <span>
+                            I’m still figuring it out
+                        </span>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="question-card"
+                 data-question="3">
+
+                <span class="question-small">
+                    YOUR GOAL
+                </span>
+
+                <h2>
+                    What would you like to focus on?
+                </h2>
+
+                <div class="answer-grid">
+
+                    <button type="button"
+                            class="answer-card">
+                        <strong>Hydration</strong>
+                        <span>
+                            Keep my skin feeling moisturized
+                        </span>
+                    </button>
+
+                    <button type="button"
+                            class="answer-card">
+                        <strong>Glow</strong>
+                        <span>
+                            Support a brighter-looking routine
+                        </span>
+                    </button>
+
+                    <button type="button"
+                            class="answer-card">
+                        <strong>Oil Control</strong>
+                        <span>
+                            Keep my routine feeling balanced
+                        </span>
+                    </button>
+
+                    <button type="button"
+                            class="answer-card">
+                        <strong>Smoother Look</strong>
+                        <span>
+                            Focus on a smoother-looking routine
+                        </span>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="question-card"
+                 data-question="4">
+
+                <span class="question-small">
+                    ROUTINE EXPERIENCE
+                </span>
+
+                <h2>
+                    What does your skincare routine look like now?
+                </h2>
+
+                <div class="answer-grid answer-grid-three">
+
+                    <button type="button"
+                            class="answer-card">
+                        <strong>Beginner</strong>
+                        <span>
+                            I’m just getting started
+                        </span>
+                    </button>
+
+                    <button type="button"
+                            class="answer-card">
+                        <strong>Simple Routine</strong>
+                        <span>
+                            I use a few basic products
+                        </span>
+                    </button>
+
+                    <button type="button"
+                            class="answer-card">
+                        <strong>Full Routine</strong>
+                        <span>
+                            I already follow several steps
+                        </span>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="question-card"
+                 data-question="5">
+
+                <span class="question-small">
+                    MAKEUP
+                </span>
+
+                <h2>
+                    How often do you usually wear makeup?
+                </h2>
+
+                <div class="answer-grid answer-grid-three">
+
+                    <button type="button"
+                            class="answer-card">
+                        <strong>Often</strong>
+                        <span>
+                            Makeup is part of my regular routine
+                        </span>
+                    </button>
+
+                    <button type="button"
+                            class="answer-card">
+                        <strong>Sometimes</strong>
+                        <span>
+                            I wear it depending on the day
+                        </span>
+                    </button>
+
+                    <button type="button"
+                            class="answer-card">
+                        <strong>Rarely</strong>
+                        <span>
+                            I don’t wear makeup very often
+                        </span>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="onboarding-buttons">
+
+                <button type="button"
+                        class="btn onboarding-back"
+                        id="backButton">
+                    Back
+                </button>
+
+                <button type="button"
+                        class="btn btn-glow"
+                        id="nextButton">
+                    Continue
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
