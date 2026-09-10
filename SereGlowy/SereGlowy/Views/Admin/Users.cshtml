@@ -1,13 +1,17 @@
-﻿@{
+﻿@model IEnumerable<dynamic>
+
+@{
     ViewData["Title"] = "Manage Users";
 }
 
 <section class="admin-manage-page">
+
     <div class="container-fluid">
 
         <div class="admin-manage-header">
 
             <div>
+
                 <span class="section-label">
                     ADMIN / USERS
                 </span>
@@ -17,201 +21,71 @@
                 </h1>
 
                 <p>
-                    View registered users and manage their account status
-                    and role inside SereGlowy.
+                    View registered users and their assigned roles.
                 </p>
+
             </div>
 
         </div>
 
 
-        <div class="admin-toolbar">
-
-            <div class="admin-search-box">
-                <input type="text"
-                       placeholder="Search users..." />
-            </div>
-
-            <div class="admin-filter-box">
-                <select>
-                    <option>All Roles</option>
-                    <option>User</option>
-                    <option>Admin</option>
-                </select>
-            </div>
-
-        </div>
-
-
-        <div class="admin-table-wrapper">
+        <div class="admin-table-wrapper mt-4">
 
             <table class="admin-table manage-table">
 
                 <thead>
                     <tr>
-                        <th>User</th>
                         <th>Email</th>
+                        <th>Username</th>
                         <th>Role</th>
-                        <th>Skin Profile</th>
-                        <th>Status</th>
-                        <th>Actions</th>
                     </tr>
                 </thead>
 
                 <tbody>
 
-                    <tr>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var user in Model)
+                        {
+                            <tr>
 
-                        <td>
-                            <div class="admin-user-info">
+                                <td>
+                                    @user.Email
+                                </td>
 
-                                <div class="admin-user-avatar">
-                                    S
-                                </div>
+                                <td>
+                                    @user.UserName
+                                </td>
 
-                                <strong>
-                                    Sereen
-                                </strong>
+                                <td>
+                                    @if (user.Role == "Admin")
+                                    {
+                                        <span class="admin-status active">
+                                            Admin
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="admin-status">
+                                            @user.Role
+                                        </span>
+                                    }
+                                </td>
 
-                            </div>
-                        </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="3"
+                                class="text-center py-4">
 
-                        <td>
-                            sereen@example.com
-                        </td>
+                                No users found.
 
-                        <td>
-                            User
-                        </td>
-
-                        <td>
-                            Completed
-                        </td>
-
-                        <td>
-                            <span class="admin-status active">
-                                Active
-                            </span>
-                        </td>
-
-                        <td>
-                            <div class="admin-action-buttons">
-
-                                <button type="button"
-                                        class="admin-edit-btn">
-                                    View
-                                </button>
-
-                                <button type="button"
-                                        class="admin-delete-btn">
-                                    Deactivate
-                                </button>
-
-                            </div>
-                        </td>
-
-                    </tr>
-
-
-                    <tr>
-
-                        <td>
-                            <div class="admin-user-info">
-
-                                <div class="admin-user-avatar">
-                                    L
-                                </div>
-
-                                <strong>
-                                    Lina
-                                </strong>
-
-                            </div>
-                        </td>
-
-                        <td>
-                            lina@example.com
-                        </td>
-
-                        <td>
-                            User
-                        </td>
-
-                        <td>
-                            Completed
-                        </td>
-
-                        <td>
-                            <span class="admin-status active">
-                                Active
-                            </span>
-                        </td>
-
-                        <td>
-                            <div class="admin-action-buttons">
-
-                                <button type="button"
-                                        class="admin-edit-btn">
-                                    View
-                                </button>
-
-                                <button type="button"
-                                        class="admin-delete-btn">
-                                    Deactivate
-                                </button>
-
-                            </div>
-                        </td>
-
-                    </tr>
-
-
-                    <tr>
-
-                        <td>
-                            <div class="admin-user-info">
-
-                                <div class="admin-user-avatar">
-                                    A
-                                </div>
-
-                                <strong>
-                                    Admin
-                                </strong>
-
-                            </div>
-                        </td>
-
-                        <td>
-                            admin@sereglowy.com
-                        </td>
-
-                        <td>
-                            Admin
-                        </td>
-
-                        <td>
-                            —
-                        </td>
-
-                        <td>
-                            <span class="admin-status active">
-                                Active
-                            </span>
-                        </td>
-
-                        <td>
-                            <div class="admin-action-buttons">
-
-                                <button type="button"
-                                        class="admin-edit-btn">
-                                    View
-                                </button>
-
-                            </div>
-                        </td>
-
-                    </tr>
+                            </td>
+                        </tr>
+                    }
 
                 </tbody>
 
@@ -220,4 +94,5 @@
         </div>
 
     </div>
+
 </section>

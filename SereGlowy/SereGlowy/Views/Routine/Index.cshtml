@@ -1,240 +1,197 @@
-﻿@{
+﻿@model IEnumerable<SereGlowy.Models.RoutineRecommendation>
+
+@{
     ViewData["Title"] = "My Routine";
+
+    var morningRoutine = Model
+        .Where(r => r.RoutineTime == "Morning")
+        .OrderBy(r => r.StepOrder)
+        .ToList();
+
+    var eveningRoutine = Model
+        .Where(r => r.RoutineTime == "Evening")
+        .OrderBy(r => r.StepOrder)
+        .ToList();
 }
 
 <section class="routine-page">
+
     <div class="container">
 
-        <div class="routine-header text-center">
-            <span class="section-label">YOUR PERSONALIZED ROUTINE</span>
+        <div class="text-center mb-5">
+
+            <span class="section-label">
+                YOUR ROUTINE
+            </span>
 
             <h1>
-                A simple routine, made for your glow.
+                Your SereGlowy Routine
             </h1>
 
             <p>
-                Based on your SereGlowy skin profile, here is a simple
-                morning and evening routine to help keep your skincare organized.
+                Based on your
+                <strong>@ViewBag.SkinType</strong>
+                skin type and
+                <strong>@ViewBag.SkinGoal</strong>
+                goal.
             </p>
+
         </div>
 
 
-        <div class="routine-profile-summary">
-            <span>Skin Type: <strong>Combination</strong></span>
-            <span>Goal: <strong>Glow</strong></span>
-            <span>Routine Level: <strong>Simple</strong></span>
-        </div>
+        @if (!Model.Any())
+        {
+            <div class="admin-form-card text-center">
 
+                <span class="section-label">
+                    ROUTINE COMING SOON
+                </span>
 
-        <div class="row g-4 mt-3">
+                <h2>
+                    No matching routine yet.
+                </h2>
 
-            <!-- Morning Routine -->
-            <div class="col-lg-6">
+                <p>
+                    Your skin profile is saved, but the admin
+                    has not added a matching routine recommendation yet.
+                </p>
 
-                <div class="routine-card">
+                <a asp-controller="SkinProfile"
+                   asp-action="Index"
+                   class="btn btn-glow">
 
-                    <div class="routine-card-header">
+                    View My Skin Profile
 
-                        <div>
-                            <span class="routine-time-label">
+                </a>
+
+            </div>
+        }
+        else
+        {
+            <div class="row g-4">
+
+                <!-- Morning Routine -->
+
+                <div class="col-lg-6">
+
+                    <div class="admin-form-card h-100">
+
+                        <div class="mb-4">
+
+                            <span class="section-label">
                                 MORNING
                             </span>
 
                             <h2>
                                 Morning Routine
                             </h2>
-                        </div>
-
-                        <div class="routine-icon">
-                            ☀
-                        </div>
-
-                    </div>
-
-
-                    <div class="routine-step">
-
-                        <div class="routine-step-number">
-                            01
-                        </div>
-
-                        <div>
-                            <h4>Gentle Cleanser</h4>
 
                             <p>
-                                Start your morning with a simple cleanser
-                                to refresh your skin.
+                                Start your day with these recommended steps.
                             </p>
+
                         </div>
 
-                    </div>
 
+                        @if (morningRoutine.Any())
+                        {
+                            foreach (var step in morningRoutine)
+                            {
+                                <div class="routine-step mb-4">
 
-                    <div class="routine-step">
+                                    <div class="routine-step-number">
+                                        @step.StepOrder
+                                    </div>
 
-                        <div class="routine-step-number">
-                            02
-                        </div>
+                                    <div>
 
-                        <div>
-                            <h4>Hydrating Serum</h4>
+                                        <h3>
+                                            @step.StepName
+                                        </h3>
 
+                                        <p>
+                                            @step.Description
+                                        </p>
+
+                                    </div>
+
+                                </div>
+                            }
+                        }
+                        else
+                        {
                             <p>
-                                Add a lightweight serum focused on hydration
-                                and a comfortable skin feel.
+                                No morning routine steps available yet.
                             </p>
-                        </div>
-
-                    </div>
-
-
-                    <div class="routine-step">
-
-                        <div class="routine-step-number">
-                            03
-                        </div>
-
-                        <div>
-                            <h4>Moisturizer</h4>
-
-                            <p>
-                                Follow with a moisturizer that fits
-                                your skin preferences.
-                            </p>
-                        </div>
-
-                    </div>
-
-
-                    <div class="routine-step">
-
-                        <div class="routine-step-number">
-                            04
-                        </div>
-
-                        <div>
-                            <h4>Sunscreen</h4>
-
-                            <p>
-                                Finish your morning routine with sunscreen.
-                            </p>
-                        </div>
+                        }
 
                     </div>
 
                 </div>
 
-            </div>
 
+                <!-- Evening Routine -->
 
-            <!-- Evening Routine -->
-            <div class="col-lg-6">
+                <div class="col-lg-6">
 
-                <div class="routine-card">
+                    <div class="admin-form-card h-100">
 
-                    <div class="routine-card-header">
+                        <div class="mb-4">
 
-                        <div>
-                            <span class="routine-time-label">
+                            <span class="section-label">
                                 EVENING
                             </span>
 
                             <h2>
                                 Evening Routine
                             </h2>
-                        </div>
-
-                        <div class="routine-icon">
-                            ☾
-                        </div>
-
-                    </div>
-
-
-                    <div class="routine-step">
-
-                        <div class="routine-step-number">
-                            01
-                        </div>
-
-                        <div>
-                            <h4>Cleanser</h4>
 
                             <p>
-                                Clean your skin and remove products
-                                from the day.
+                                Finish your day with these recommended steps.
                             </p>
+
                         </div>
 
-                    </div>
 
+                        @if (eveningRoutine.Any())
+                        {
+                            foreach (var step in eveningRoutine)
+                            {
+                                <div class="routine-step mb-4">
 
-                    <div class="routine-step">
+                                    <div class="routine-step-number">
+                                        @step.StepOrder
+                                    </div>
 
-                        <div class="routine-step-number">
-                            02
-                        </div>
+                                    <div>
 
-                        <div>
-                            <h4>Serum</h4>
+                                        <h3>
+                                            @step.StepName
+                                        </h3>
 
+                                        <p>
+                                            @step.Description
+                                        </p>
+
+                                    </div>
+
+                                </div>
+                            }
+                        }
+                        else
+                        {
                             <p>
-                                Use a serum that matches your selected
-                                skincare goal.
+                                No evening routine steps available yet.
                             </p>
-                        </div>
-
-                    </div>
-
-
-                    <div class="routine-step">
-
-                        <div class="routine-step-number">
-                            03
-                        </div>
-
-                        <div>
-                            <h4>Moisturizer</h4>
-
-                            <p>
-                                Complete your evening routine with
-                                a comfortable moisturizer.
-                            </p>
-                        </div>
+                        }
 
                     </div>
 
                 </div>
 
             </div>
-
-        </div>
-
-
-        <div class="routine-next">
-
-            <div>
-                <span class="section-label">
-                    NEXT STEP
-                </span>
-
-                <h2>
-                    Find products for your routine.
-                </h2>
-
-                <p>
-                    Explore skincare products that match your profile
-                    and routine preferences.
-                </p>
-            </div>
-
-            <a asp-controller="Products"
-               asp-action="Recommended"
-               class="btn btn-glow">
-                View Recommended Products
-            </a>
-
-        </div>
+        }
 
     </div>
+
 </section>

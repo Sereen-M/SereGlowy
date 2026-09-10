@@ -1,203 +1,567 @@
-﻿@{
+﻿@model IEnumerable<SereGlowy.Models.Ingredient>
+
+@{
     ViewData["Title"] = "Ingredients Guide";
+    var ingredients = Model?.ToList() ?? new List<SereGlowy.Models.Ingredient>();
 }
 
-<section class="ingredients-hero">
-    <div class="container text-center">
+<!-- =====================================
+     INGREDIENTS HERO
+====================================== -->
 
-        <span class="section-label">
-            INGREDIENTS GUIDE
-        </span>
+<section class="ig-hero">
 
-        <h1>
-            Understand what’s inside your skincare.
-        </h1>
-
-        <p>
-            Explore common skincare ingredients, learn their general purpose,
-            and discover which products contain them.
-        </p>
-
-    </div>
-</section>
-
-
-<section class="ingredients-section">
     <div class="container">
 
-        <div class="ingredients-toolbar">
+        <div class="row align-items-center">
 
-            <input type="text"
-                   class="ingredient-search"
-                   placeholder="Search ingredients..." />
+            <!-- LEFT SIDE -->
+            <div class="col-lg-6">
 
-        </div>
+                <span class="ig-label">
+                    INGREDIENTS GUIDE
+                </span>
+
+                <h1>
+                    Know what goes into
+                    <span>your skincare.</span>
+                </h1>
+
+                <p class="ig-intro">
+                    Explore common skincare ingredients, understand their benefits,
+                    and find what may suit your skin type and goals.
+                </p>
 
 
-        <div class="row g-4">
+                <!-- SEARCH -->
 
-            <div class="col-md-6 col-lg-4">
-                <div class="ingredient-card">
+                <div class="ig-search-box">
 
-                    <span class="ingredient-number">01</span>
+                    <span class="ig-search-icon">⌕</span>
 
-                    <h3>Hyaluronic Acid</h3>
-
-                    <p>
-                        Commonly used in skincare products focused on hydration
-                        and maintaining a soft skin feel.
-                    </p>
-
-                    <div class="ingredient-tags">
-                        <span>Hydration</span>
-                        <span>Dry Skin</span>
-                    </div>
-
-                    <a asp-controller="Ingredients"
-                       asp-action="Details"
-                       asp-route-id="1">
-                        Learn More →
-                    </a>
+                    <input type="text"
+                           id="ingredientSearch"
+                           placeholder="Search by ingredient, benefit, or skin type..." />
 
                 </div>
+
+
+                <!-- FILTERS -->
+
+                <div class="ig-filters">
+
+                    <select id="benefitFilter">
+                        <option value="">All Benefits</option>
+
+                        @foreach (var purpose in ingredients
+                            .Where(i => !string.IsNullOrWhiteSpace(i.Purpose))
+                            .Select(i => i.Purpose)
+                            .Distinct()
+                            .OrderBy(i => i))
+                        {
+                            <option value="@purpose">
+                                @purpose
+                            </option>
+                        }
+                    </select>
+
+
+                    <select id="skinFilter">
+                        <option value="">All Skin Types</option>
+
+                        @foreach (var skin in ingredients
+                            .Where(i => !string.IsNullOrWhiteSpace(i.SuitableSkinType))
+                            .Select(i => i.SuitableSkinType)
+                            .Distinct()
+                            .OrderBy(i => i))
+                        {
+                            <option value="@skin">
+                                @skin
+                            </option>
+                        }
+                    </select>
+
+
+                    <select id="sortFilter">
+                        <option value="az">A - Z</option>
+                        <option value="za">Z - A</option>
+                    </select>
+
+                </div>
+
             </div>
 
 
-            <div class="col-md-6 col-lg-4">
-                <div class="ingredient-card">
+            <!-- RIGHT SIDE -->
 
-                    <span class="ingredient-number">02</span>
+            <div class="col-lg-6">
 
-                    <h3>Niacinamide</h3>
+                <div class="ig-hero-image-wrapper">
 
-                    <p>
-                        A widely used skincare ingredient found in many
-                        serums and moisturizers.
-                    </p>
+                    <div class="ig-decoration ig-circle-one"></div>
+                    <div class="ig-decoration ig-circle-two"></div>
 
-                    <div class="ingredient-tags">
-                        <span>Oil Control</span>
-                        <span>Combination</span>
+                    <img src="~/images/ingredients/ingredients-hero.png"
+                         alt="Skincare ingredients"
+                         class="ig-hero-image" />
+
+                    <div class="ig-small-message">
+                        <span>✦</span>
+                        Small ingredients.<br />
+                        Big results.
                     </div>
 
-                    <a asp-controller="Ingredients"
-                       asp-action="Details"
-                       asp-route-id="2">
-                        Learn More →
-                    </a>
-
                 </div>
-            </div>
 
-
-            <div class="col-md-6 col-lg-4">
-                <div class="ingredient-card">
-
-                    <span class="ingredient-number">03</span>
-
-                    <h3>Vitamin C</h3>
-
-                    <p>
-                        Commonly included in skincare products designed
-                        for brighter-looking skin.
-                    </p>
-
-                    <div class="ingredient-tags">
-                        <span>Glow</span>
-                        <span>Brightening</span>
-                    </div>
-
-                    <a asp-controller="Ingredients"
-                       asp-action="Details"
-                       asp-route-id="3">
-                        Learn More →
-                    </a>
-
-                </div>
-            </div>
-
-
-            <div class="col-md-6 col-lg-4">
-                <div class="ingredient-card">
-
-                    <span class="ingredient-number">04</span>
-
-                    <h3>Ceramides</h3>
-
-                    <p>
-                        Often found in moisturizers and skincare products
-                        focused on supporting the skin barrier.
-                    </p>
-
-                    <div class="ingredient-tags">
-                        <span>Moisture</span>
-                        <span>Dry Skin</span>
-                    </div>
-
-                    <a asp-controller="Ingredients"
-                       asp-action="Details"
-                       asp-route-id="4">
-                        Learn More →
-                    </a>
-
-                </div>
-            </div>
-
-
-            <div class="col-md-6 col-lg-4">
-                <div class="ingredient-card">
-
-                    <span class="ingredient-number">05</span>
-
-                    <h3>Salicylic Acid</h3>
-
-                    <p>
-                        Commonly used in skincare products designed
-                        for oily or combination skin routines.
-                    </p>
-
-                    <div class="ingredient-tags">
-                        <span>Oil Control</span>
-                        <span>Oily Skin</span>
-                    </div>
-
-                    <a asp-controller="Ingredients"
-                       asp-action="Details"
-                       asp-route-id="5">
-                        Learn More →
-                    </a>
-
-                </div>
-            </div>
-
-
-            <div class="col-md-6 col-lg-4">
-                <div class="ingredient-card">
-
-                    <span class="ingredient-number">06</span>
-
-                    <h3>Squalane</h3>
-
-                    <p>
-                        A lightweight ingredient often included in
-                        products focused on moisture and comfort.
-                    </p>
-
-                    <div class="ingredient-tags">
-                        <span>Hydration</span>
-                        <span>Normal Skin</span>
-                    </div>
-
-                    <a asp-controller="Ingredients"
-                       asp-action="Details"
-                       asp-route-id="6">
-                        Learn More →
-                    </a>
-
-                </div>
             </div>
 
         </div>
 
     </div>
+
 </section>
+
+
+<!-- =====================================
+     BENEFIT CHIPS
+====================================== -->
+
+<section class="ig-benefit-strip">
+
+    <div class="container">
+
+        <div class="ig-benefit-chips">
+
+            <span class="ig-benefit-chip" data-benefit="Hydration">◌ Hydration</span>
+            <span class="ig-benefit-chip" data-benefit="Brightening">✦ Brightening</span>
+            <span class="ig-benefit-chip" data-benefit="Soothing">♡ Soothing</span>
+            <span class="ig-benefit-chip" data-benefit="Oil Control">◇ Oil Control</span>
+            <span class="ig-benefit-chip" data-benefit="Barrier Support">⬡ Barrier Support</span>
+            <span class="ig-benefit-chip" data-benefit="Exfoliation">✧ Exfoliation</span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================
+     INGREDIENTS LIBRARY
+====================================== -->
+
+<section class="ig-library">
+
+    <div class="container">
+
+        <div class="ig-library-heading">
+
+            <div>
+                <span class="ig-label">
+                    EXPLORE & LEARN
+                </span>
+
+                <h2>
+                    Common Skincare Ingredients
+                </h2>
+            </div>
+
+            <span id="ingredientCount"
+                  class="ig-count">
+                @ingredients.Count ingredient@(ingredients.Count == 1 ? "" : "s")
+            </span>
+
+        </div>
+
+
+        <div class="row g-4"
+             id="ingredientsContainer">
+
+            @if (ingredients.Any())
+            {
+                foreach (var ingredient in ingredients)
+                {
+                    var purpose =
+                        (ingredient.Purpose ?? "").ToLowerInvariant();
+
+                    var icon = "✦";
+
+                    if (purpose.Contains("hydrat"))
+                    {
+                        icon = "◌";
+                    }
+                    else if (purpose.Contains("bright"))
+                    {
+                        icon = "✦";
+                    }
+                    else if (purpose.Contains("oil"))
+                    {
+                        icon = "◇";
+                    }
+                    else if (purpose.Contains("sooth"))
+                    {
+                        icon = "♡";
+                    }
+                    else if (purpose.Contains("barrier"))
+                    {
+                        icon = "⬡";
+                    }
+                    else if (purpose.Contains("exfol"))
+                    {
+                        icon = "✧";
+                    }
+                    else if (purpose.Contains("renew"))
+                    {
+                        icon = "⌁";
+                    }
+
+
+                    <div class="col-md-6 col-lg-4 col-xl-3 ingredient-card-column"
+                         data-name="@ingredient.IngredientName"
+                         data-purpose="@ingredient.Purpose"
+                         data-skin="@ingredient.SuitableSkinType">
+
+                        <div class="ig-card">
+
+                            <!-- VISUAL -->
+
+                            <div class="ig-card-visual">
+
+                                <div class="ig-texture-circle">
+                                    @icon
+                                </div>
+
+                            </div>
+                            <!-- NAME -->
+
+                            <h3>
+                                @ingredient.IngredientName
+                            </h3>
+
+
+                            <!-- TAGS -->
+
+                            <div class="ig-tags">
+
+                                @if (!string.IsNullOrWhiteSpace(ingredient.Purpose))
+                                {
+                                    <span class="ig-purpose">
+                                        @ingredient.Purpose
+                                    </span>
+                                }
+
+                                @if (!string.IsNullOrWhiteSpace(ingredient.SuitableSkinType))
+                                {
+                                    <span class="ig-skin">
+                                        @ingredient.SuitableSkinType
+                                    </span>
+                                }
+
+                            </div>
+
+
+                            <!-- DESCRIPTION -->
+
+                            <p>
+                                @(string.IsNullOrWhiteSpace(ingredient.Description)
+                                    ? "Learn more about this skincare ingredient and its benefits."
+                                    : ingredient.Description)
+                            </p>
+
+                        </div>
+
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12">
+
+                    <div class="ig-empty">
+                        <span>✦</span>
+
+                        <h3>
+                            No ingredients available yet.
+                        </h3>
+
+                        <p>
+                            Ingredients added by the admin will appear here.
+                        </p>
+                    </div>
+
+                </div>
+            }
+
+        </div>
+
+
+        <!-- NO RESULTS -->
+
+        <div id="noResults"
+             class="ig-empty"
+             style="display:none;">
+
+            <span>⌕</span>
+
+            <h3>
+                No matching ingredients found.
+            </h3>
+
+            <p>
+                Try another ingredient, benefit, or skin type.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<style>
+    /* Small page-specific refinements:
+           one icon only, shorter cards, less empty space,
+           and clickable benefit chips. */
+
+    .ig-card {
+        min-height: 285px !important;
+        padding: 22px !important;
+    }
+
+    .ig-card-visual {
+        justify-content: flex-start !important;
+        margin-bottom: 14px !important;
+    }
+
+    .ig-texture-circle {
+        width: 72px !important;
+        height: 72px !important;
+        margin-bottom: 0 !important;
+        font-size: 27px !important;
+        color: #c77d8d !important;
+        background: radial-gradient( circle at 35% 30%, #ffffff, #f9e7e7 55%, #f2d6d9 ) !important;
+    }
+
+    .ig-card h3 {
+        margin-top: 0 !important;
+    }
+
+    .ig-card p {
+        margin-top: 2px !important;
+        -webkit-line-clamp: 4;
+    }
+
+    .ig-benefit-chip {
+        cursor: pointer;
+        transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+        user-select: none;
+    }
+
+        .ig-benefit-chip:hover {
+            transform: translateY(-2px);
+        }
+
+        .ig-benefit-chip.active {
+            background: #b45f70 !important;
+            color: #ffffff !important;
+        }
+
+   
+</style>
+
+<script>
+
+    const searchInput =
+        document.getElementById("ingredientSearch");
+
+    const benefitFilter =
+        document.getElementById("benefitFilter");
+
+    const skinFilter =
+        document.getElementById("skinFilter");
+
+    const sortFilter =
+        document.getElementById("sortFilter");
+
+    const container =
+        document.getElementById("ingredientsContainer");
+
+    const count =
+        document.getElementById("ingredientCount");
+
+    const noResults =
+        document.getElementById("noResults");
+
+
+    function updateIngredients() {
+
+        const search =
+            searchInput.value.toLowerCase().trim();
+
+        const benefit =
+            benefitFilter.value.toLowerCase();
+
+        const skin =
+            skinFilter.value.toLowerCase();
+
+
+        const cards =
+            Array.from(
+                document.querySelectorAll(".ingredient-card-column")
+            );
+
+
+        cards.forEach(card => {
+
+            const name =
+                (card.dataset.name || "").toLowerCase();
+
+            const purpose =
+                (card.dataset.purpose || "").toLowerCase();
+
+            const skinType =
+                (card.dataset.skin || "").toLowerCase();
+
+
+            const searchMatch =
+                search === "" ||
+                name.includes(search) ||
+                purpose.includes(search) ||
+                skinType.includes(search);
+
+
+            const benefitMatch =
+                benefit === "" ||
+                purpose === benefit;
+
+
+            const skinMatch =
+                skin === "" ||
+                skinType === skin;
+
+
+            card.style.display =
+                searchMatch &&
+                    benefitMatch &&
+                    skinMatch
+                    ? ""
+                    : "none";
+        });
+
+
+        const visibleCards =
+            cards.filter(card =>
+                card.style.display !== "none"
+            );
+
+
+        visibleCards.sort((a, b) => {
+
+            const nameA =
+                a.dataset.name.toLowerCase();
+
+            const nameB =
+                b.dataset.name.toLowerCase();
+
+
+            if (sortFilter.value === "za") {
+                return nameB.localeCompare(nameA);
+            }
+
+            return nameA.localeCompare(nameB);
+        });
+
+
+        visibleCards.forEach(card =>
+            container.appendChild(card)
+        );
+
+
+        count.textContent =
+            visibleCards.length +
+            (visibleCards.length === 1
+                ? " ingredient"
+                : " ingredients");
+
+
+        noResults.style.display =
+            cards.length > 0 &&
+                visibleCards.length === 0
+                ? "block"
+                : "none";
+    }
+
+
+    searchInput.addEventListener(
+        "input",
+        updateIngredients
+    );
+
+    benefitFilter.addEventListener(
+        "change",
+        updateIngredients
+    );
+
+    skinFilter.addEventListener(
+        "change",
+        updateIngredients
+    );
+
+    sortFilter.addEventListener(
+        "change",
+        updateIngredients
+    );
+
+
+    document.querySelectorAll(".ig-benefit-chip")
+        .forEach(chip => {
+
+            chip.addEventListener("click", function() {
+
+                const selectedBenefit =
+                    this.dataset.benefit || "";
+
+                const currentBenefit =
+                    benefitFilter.value;
+
+                if (currentBenefit === selectedBenefit) {
+                    benefitFilter.value = "";
+                }
+                else {
+                    benefitFilter.value = selectedBenefit;
+                }
+
+                document.querySelectorAll(".ig-benefit-chip")
+                    .forEach(item =>
+                        item.classList.remove("active")
+                    );
+
+                if (benefitFilter.value !== "") {
+                    this.classList.add("active");
+                }
+
+                updateIngredients();
+            });
+
+        });
+
+
+    benefitFilter.addEventListener(
+        "change",
+        function() {
+
+            document.querySelectorAll(".ig-benefit-chip")
+                .forEach(chip => {
+
+                    chip.classList.toggle(
+                        "active",
+                        chip.dataset.benefit === this.value
+                    );
+
+                });
+
+        }
+    );
+
+</script>

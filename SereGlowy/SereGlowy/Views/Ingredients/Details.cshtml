@@ -1,118 +1,68 @@
-﻿@{
-    ViewData["Title"] = "Ingredient Details";
+﻿@model SereGlowy.Models.Ingredient
+
+@{
+    ViewData["Title"] = Model.IngredientName;
 }
 
-<section class="ingredient-details-page">
+<section class="ingredients-hero">
+    <div class="container text-center">
+
+        <span class="section-label">
+            INGREDIENT DETAILS
+        </span>
+
+        <h1>
+            @Model.IngredientName
+        </h1>
+
+        <p>
+            Learn more about this skincare ingredient and how it may fit into your routine.
+        </p>
+
+    </div>
+</section>
+
+
+<section class="ingredient-details-section">
     <div class="container">
 
-        <div class="ingredient-details-box">
+        <div class="ingredient-details-card">
 
-            <span class="section-label">
-                INGREDIENT DETAILS
-            </span>
-
-            <h1>
-                Hyaluronic Acid
-            </h1>
-
-            <p class="ingredient-intro">
-                Hyaluronic Acid is a common skincare ingredient often used
-                in products focused on hydration and helping the skin feel
-                soft and comfortable.
-            </p>
-
-
-            <div class="row g-4 mt-4">
-
-                <div class="col-md-4">
-                    <div class="ingredient-info-card">
-
-                        <span>Purpose</span>
-
-                        <h4>
-                            Hydration
-                        </h4>
-
-                        <p>
-                            Commonly included in skincare products
-                            designed to support hydration.
-                        </p>
-
-                    </div>
-                </div>
-
-
-                <div class="col-md-4">
-                    <div class="ingredient-info-card">
-
-                        <span>Suitable For</span>
-
-                        <h4>
-                            Dry / Normal Skin
-                        </h4>
-
-                        <p>
-                            Often found in products made for users
-                            looking for additional moisture.
-                        </p>
-
-                    </div>
-                </div>
-
-
-                <div class="col-md-4">
-                    <div class="ingredient-info-card">
-
-                        <span>Commonly Found In</span>
-
-                        <h4>
-                            Serums & Moisturizers
-                        </h4>
-
-                        <p>
-                            Frequently included in lightweight serums
-                            and moisturizing products.
-                        </p>
-
-                    </div>
-                </div>
-
+            <div class="ingredient-details-item">
+                <span>Purpose</span>
+                <h4>
+                    @(string.IsNullOrWhiteSpace(Model.Purpose)
+                        ? "Not specified"
+                        : Model.Purpose)
+                </h4>
             </div>
 
+            <div class="ingredient-details-item">
+                <span>Suitable Skin Type</span>
+                <h4>
+                    @(string.IsNullOrWhiteSpace(Model.SuitableSkinType)
+                        ? "Not specified"
+                        : Model.SuitableSkinType)
+                </h4>
+            </div>
 
-            <div class="ingredient-related mt-5">
-
-                <span class="section-label">
-                    RELATED PRODUCTS
-                </span>
-
-                <h2>
-                    Products containing this ingredient
-                </h2>
+            <div class="ingredient-details-description">
+                <span>Description</span>
 
                 <p>
-                    Explore skincare products in SereGlowy that may
-                    include Hyaluronic Acid.
+                    @(string.IsNullOrWhiteSpace(Model.Description)
+                        ? "No description available."
+                        : Model.Description)
                 </p>
-
-                <a asp-controller="Products"
-                   asp-action="Index"
-                   class="btn btn-glow">
-                    Explore Products
-                </a>
-
             </div>
 
+            <a asp-controller="Ingredients"
+               asp-action="Index"
+               class="btn btn-outline-glow">
 
-            <div class="mt-4">
+                ← Back to Ingredients
 
-                <a asp-controller="Ingredients"
-                   asp-action="Index"
-                   class="ingredient-back-link">
-                    ← Back to Ingredients Guide
-                </a>
-
-            </div>
+            </a>
 
         </div>
 

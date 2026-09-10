@@ -9,19 +9,19 @@ namespace SereGlowy.Models
         public int ProductId { get; set; }
 
         [Required]
-        public string ProductName { get; set; }
+        public string ProductName { get; set; } = string.Empty;
 
         [Required]
-        public string Brand { get; set; }
+        public string Brand { get; set; } = string.Empty;
 
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
-        public string ImageUrl { get; set; }
+        public string? ImageUrl { get; set; }
 
         [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
 
-        public string SuitableSkinType { get; set; }
+        public string? SuitableSkinType { get; set; }
 
         public bool IsActive { get; set; } = true;
 
@@ -30,10 +30,10 @@ namespace SereGlowy.Models
         [ForeignKey("Category")]
         public int CategoryId { get; set; }
 
-        public Category Category { get; set; }
+        public Category? Category { get; set; }
 
-        public List<ProductIngredient> ProductIngredients { get; set; }
+        public List<ProductIngredient>? ProductIngredients { get; set; }
 
-        public List<MyProduct> MyProducts { get; set; }
+        public List<MyProduct>? MyProducts { get; set; }
     }
 }

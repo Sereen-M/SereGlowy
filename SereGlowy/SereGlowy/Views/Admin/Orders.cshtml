@@ -1,0 +1,123 @@
+﻿@model IEnumerable<SereGlowy.Models.Order>
+
+@{
+    ViewData["Title"] = "Manage Orders";
+}
+
+<section class="admin-manage-page">
+
+    <div class="container">
+
+        <div class="admin-manage-header">
+
+            <div>
+                <span class="section-label">
+                    ADMIN PANEL
+                </span>
+
+                <h1>Manage Orders</h1>
+
+                <p>
+                    Review customer orders and track their current status.
+                </p>
+            </div>
+
+            <a asp-controller="Admin"
+               asp-action="Dashboard"
+               class="btn btn-outline-glow">
+
+                ← Dashboard
+
+            </a>
+
+        </div>
+
+
+        @if (Model != null && Model.Any())
+        {
+            <div class="admin-table-wrapper">
+
+                <table class="admin-table">
+
+                    <thead>
+                        <tr>
+                            <th>Order</th>
+                            <th>Customer</th>
+                            <th>Date</th>
+                            <th>Items</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var order in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    <strong>
+                                        #@order.OrderId
+                                    </strong>
+                                </td>
+
+                                <td>
+                                    @order.FullName
+                                </td>
+
+                                <td>
+                                    @order.OrderDate.ToString("dd MMM yyyy")
+                                </td>
+
+                                <td>
+                                    @order.OrderItems.Sum(i => i.Quantity)
+                                </td>
+
+                                <td>
+                                    @order.TotalAmount.ToString("0.00") JOD
+                                </td>
+
+                                <td>
+                                    <span class="admin-order-status">
+                                        @order.Status
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <a asp-controller="Admin"
+                                       asp-action="OrderDetails"
+                                       asp-route-id="@order.OrderId"
+                                       class="admin-edit-btn">
+
+                                        View
+
+                                    </a>
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+        }
+        else
+        {
+            <div class="orders-empty">
+
+                <h2>No orders yet.</h2>
+
+                <p>
+                    Customer orders will appear here after checkout.
+                </p>
+
+            </div>
+        }
+
+    </div>
+
+</section>

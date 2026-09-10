@@ -8,21 +8,21 @@ namespace SereGlowy.Models
         public int SkinProfileId { get; set; }
 
         [Required]
-        public string UserId { get; set; }
+        public string UserId { get; set; } = string.Empty;
 
         [Required]
-        public string SkinType { get; set; }
+        public string SkinType { get; set; } = string.Empty;
 
         public bool? IsSensitive { get; set; }
 
         [Required]
-        public string SkinGoal { get; set; }
+        public string SkinGoal { get; set; } = string.Empty;
 
         [Required]
-        public string RoutineExperience { get; set; }
+        public string RoutineExperience { get; set; } = string.Empty;
 
         [Required]
-        public string MakeupUsage { get; set; }
+        public string MakeupUsage { get; set; } = string.Empty;
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 

@@ -1,0 +1,317 @@
+﻿@model IEnumerable<SereGlowy.Models.CartItem>
+
+@{
+    ViewData["Title"] = "Shopping Cart";
+
+    var cartItems = Model?.ToList()
+        ?? new List<SereGlowy.Models.CartItem>();
+
+    decimal total = cartItems.Sum(item =>
+        (item.Product?.Price ?? 0) * item.Quantity);
+}
+
+
+<section class="cart-page">
+
+    <div class="container">
+
+        <!-- HEADER -->
+
+        <div class="cart-header text-center">
+
+            <span class="section-label">
+                YOUR CART
+            </span>
+
+            <h1>
+                Shopping Cart
+            </h1>
+
+            <p>
+                Review your skincare picks before checkout.
+            </p>
+
+        </div>
+
+
+        @if (TempData["CartMessage"] != null)
+        {
+            <div class="alert alert-success cart-alert">
+                @TempData["CartMessage"]
+            </div>
+        }
+
+
+        @if (cartItems.Any())
+        {
+            <div class="row g-4">
+
+                <!-- LEFT: PRODUCTS -->
+
+                <div class="col-lg-8">
+
+                    <div class="cart-items-wrapper">
+
+                        @foreach (var item in cartItems)
+                        {
+                            var product = item.Product;
+
+                            if (product != null)
+                            {
+                                <div class="cart-item">
+
+                                    <!-- IMAGE -->
+
+                                    <div class="cart-item-image">
+
+                                        @if (!string.IsNullOrWhiteSpace(product.ImageUrl))
+                                        {
+                                            <img src="@product.ImageUrl"
+                                                 alt="@product.ProductName" />
+                                        }
+                                        else
+                                        {
+                                            <span>
+                                                Product Image
+                                            </span>
+                                        }
+
+                                    </div>
+
+
+                                    <!-- INFO -->
+
+                                    <div class="cart-item-info">
+
+                                        <span class="cart-brand">
+                                            @product.Brand
+                                        </span>
+
+                                        <h3>
+                                            @product.ProductName
+                                        </h3>
+
+                                        <span class="cart-category">
+                                            @(product.Category?.CategoryName ?? "Skincare")
+                                        </span>
+
+                                        <div class="cart-price">
+                                            @product.Price.ToString("0.00") JOD
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- QUANTITY -->
+
+                                    <div class="cart-quantity-section">
+
+                                        <span class="cart-quantity-label">
+                                            Quantity
+                                        </span>
+
+                                        <div class="cart-quantity">
+
+                                            <form asp-controller="Cart"
+                                                  asp-action="Decrease"
+                                                  method="post">
+
+                                                @Html.AntiForgeryToken()
+
+                                                <input type="hidden"
+                                                       name="id"
+                                                       value="@item.CartItemId" />
+
+                                                <button type="submit">
+                                                    −
+                                                </button>
+
+                                            </form>
+
+
+                                            <span>
+                                                @item.Quantity
+                                            </span>
+
+
+                                            <form asp-controller="Cart"
+                                                  asp-action="Increase"
+                                                  method="post">
+
+                                                @Html.AntiForgeryToken()
+
+                                                <input type="hidden"
+                                                       name="id"
+                                                       value="@item.CartItemId" />
+
+                                                <button type="submit">
+                                                    +
+                                                </button>
+
+                                            </form>
+
+                                        </div>
+
+
+                                        <div class="cart-subtotal">
+                                            @((product.Price * item.Quantity).ToString("0.00")) JOD
+                                        </div>
+
+
+                                        <form asp-controller="Cart"
+                                              asp-action="Remove"
+                                              method="post">
+
+                                            @Html.AntiForgeryToken()
+
+                                            <input type="hidden"
+                                                   name="id"
+                                                   value="@item.CartItemId" />
+
+                                            <button type="submit"
+                                                    class="cart-remove-btn">
+
+                                                Remove
+
+                                            </button>
+
+                                        </form>
+
+                                    </div>
+
+                                </div>
+                            }
+                        }
+
+                    </div>
+
+                </div>
+
+
+                <!-- RIGHT: SUMMARY -->
+
+                <div class="col-lg-4">
+
+                    <div class="cart-summary">
+
+                        <span class="section-label">
+                            ORDER SUMMARY
+                        </span>
+
+                        <h2>
+                            Your Glow Picks
+                        </h2>
+
+
+                        <div class="cart-summary-row">
+
+                            <span>
+                                Items
+                            </span>
+
+                            <strong>
+                                @cartItems.Sum(i => i.Quantity)
+                            </strong>
+
+                        </div>
+
+
+                        <div class="cart-summary-row">
+
+                            <span>
+                                Subtotal
+                            </span>
+
+                            <strong>
+                                @total.ToString("0.00") JOD
+                            </strong>
+
+                        </div>
+
+
+                        <div class="cart-summary-row">
+
+                            <span>
+                                Delivery
+                            </span>
+
+                            <strong>
+                                Free
+                            </strong>
+
+                        </div>
+
+
+                        <div class="cart-summary-total">
+
+                            <span>
+                                Total
+                            </span>
+
+                            <strong>
+                                @total.ToString("0.00") JOD
+                            </strong>
+
+                        </div>
+
+
+                        <!-- Checkout button next step -->
+
+                        <a asp-controller="Cart"
+                           asp-action="Checkout"
+                           class="btn btn-glow w-100 cart-checkout-btn">
+
+                            Proceed to Checkout
+
+                        </a>
+                        <small class="cart-checkout-note">
+                            Checkout will be available in the next step.
+                        </small>
+
+
+                        <a asp-controller="Products"
+                           asp-action="Index"
+                           class="cart-continue">
+
+                            ← Continue Shopping
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+        }
+        else
+        {
+            <!-- EMPTY CART -->
+
+            <div class="cart-empty">
+
+                <div class="cart-empty-icon">
+                    🛒
+                </div>
+
+                <h2>
+                    Your cart is empty.
+                </h2>
+
+                <p>
+                    Explore skincare products and add your favorites to your cart.
+                </p>
+
+                <a asp-controller="Products"
+                   asp-action="Index"
+                   class="btn btn-glow">
+
+                    Explore Products
+
+                </a>
+
+            </div>
+        }
+
+    </div>
+
+</section>

@@ -1,10 +1,14 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SereGlowy.Data;
+using SereGlowy.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// =========================
 // Database Connection
+// =========================
+
 var connectionString = builder.Configuration
     .GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException(
@@ -16,7 +20,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 
+// =========================
 // Identity + Roles
+// =========================
+
 builder.Services
     .AddDefaultIdentity<IdentityUser>(options =>
     {
@@ -31,9 +38,11 @@ builder.Services.AddControllersWithViews();
 var app = builder.Build();
 
 
-// =====================================
-// Create Admin Role & Admin Account
-// =====================================
+// =========================
+// Create Roles + Admin Account
+// + Fix Existing User Roles
+// + Seed Categories
+// =========================
 
 using (var scope = app.Services.CreateScope())
 {
@@ -43,14 +52,25 @@ using (var scope = app.Services.CreateScope())
     var userManager = scope.ServiceProvider
         .GetRequiredService<UserManager<IdentityUser>>();
 
+    var dbContext = scope.ServiceProvider
+        .GetRequiredService<ApplicationDbContext>();
+
+
+    // =========================
     // Create Admin Role
+    // =========================
+
     if (!await roleManager.RoleExistsAsync("Admin"))
     {
         await roleManager.CreateAsync(
             new IdentityRole("Admin"));
     }
 
+
+    // =========================
     // Create User Role
+    // =========================
+
     if (!await roleManager.RoleExistsAsync("User"))
     {
         await roleManager.CreateAsync(
@@ -58,7 +78,10 @@ using (var scope = app.Services.CreateScope())
     }
 
 
-    // Admin Account
+    // =========================
+    // Create Admin Account
+    // =========================
+
     string adminEmail = "admin@sereglowy.com";
     string adminPassword = "Admin@123";
 
@@ -88,7 +111,6 @@ using (var scope = app.Services.CreateScope())
     }
     else
     {
-        // Make sure existing admin has Admin role
         if (!await userManager.IsInRoleAsync(
             adminUser,
             "Admin"))
@@ -98,10 +120,86 @@ using (var scope = app.Services.CreateScope())
                 "Admin");
         }
     }
+
+
+    // =========================
+    // Give Existing Users
+    // the User Role
+    // =========================
+
+    var existingUsers =
+        await userManager.Users.ToListAsync();
+
+    foreach (var user in existingUsers)
+    {
+        var roles =
+            await userManager.GetRolesAsync(user);
+
+        if (!roles.Any() &&
+            user.Email != adminEmail)
+        {
+            await userManager.AddToRoleAsync(
+                user,
+                "User");
+        }
+    }
+
+
+    // =========================
+    // Seed Categories
+    // =========================
+
+    if (!await dbContext.Categories.AnyAsync())
+    {
+        var categories = new List<Category>
+        {
+            new Category
+            {
+                CategoryName = "Cleanser",
+                Description =
+                    "Products used to cleanse the skin and remove dirt and impurities."
+            },
+
+            new Category
+            {
+                CategoryName = "Moisturizer",
+                Description =
+                    "Products used to hydrate the skin and maintain moisture."
+            },
+
+            new Category
+            {
+                CategoryName = "Serum",
+                Description =
+                    "Concentrated skincare products used for specific skincare needs."
+            },
+
+            new Category
+            {
+                CategoryName = "Sunscreen",
+                Description =
+                    "Products used to protect the skin from sun exposure."
+            },
+
+            new Category
+            {
+                CategoryName = "Toner",
+                Description =
+                    "Products used after cleansing to prepare the skin for the next routine steps."
+            }
+        };
+
+        dbContext.Categories.AddRange(categories);
+
+        await dbContext.SaveChangesAsync();
+    }
 }
 
 
-// Configure the HTTP request pipeline
+// =========================
+// HTTP Request Pipeline
+// =========================
+
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
@@ -118,9 +216,17 @@ app.UseHttpsRedirection();
 app.UseRouting();
 
 
-// IMPORTANT
+// =========================
+// Authentication
+// =========================
+
 app.UseAuthentication();
 app.UseAuthorization();
+
+
+// =========================
+// Routes
+// =========================
 
 app.MapStaticAssets();
 

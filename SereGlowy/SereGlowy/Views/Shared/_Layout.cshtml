@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var displayName = User.Identity?.Name;
+
+    if (!string.IsNullOrEmpty(displayName) && displayName.Contains("@"))
+    {
+        displayName = displayName.Split('@')[0];
+    }
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -15,106 +23,237 @@
     <!-- =========================
          NAVBAR
     ========================== -->
+    @if (!User.IsInRole("Admin"))
+    {
+        <header>
+            <nav class="navbar navbar-expand-lg sereglowy-navbar">
 
-    <header>
-        <nav class="navbar navbar-expand-lg sereglowy-navbar">
-            <div class="container">
+                <div class="container">
 
-                <a class="navbar-brand sereglowy-logo"
-                   asp-controller="Home"
-                   asp-action="Index">
-                    SereGlowy
-                    <span>✦</span>
-                </a>
+                    <!-- LOGO -->
+                    <a class="navbar-brand sereglowy-navbar-brand"
+                       asp-controller="Home"
+                       asp-action="Index">
 
-                <button class="navbar-toggler"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#mainNavbar"
-                        aria-controls="mainNavbar"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation">
+                        <img src="~/images/serelogo.png"
+                             asp-append-version="true"
+                             alt="SereGlowy"
+                             class="sereglowy-nav-logo" />
 
-                    <span class="navbar-toggler-icon"></span>
-
-                </button>
-
-                <div class="collapse navbar-collapse"
-                     id="mainNavbar">
-
-                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-
-                        <li class="nav-item">
-                            <a class="nav-link"
-                               asp-controller="Home"
-                               asp-action="Index">
-                                Home
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link"
-                               asp-controller="Products"
-                               asp-action="Index">
-                                Products
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link"
-                               asp-controller="Ingredients"
-                               asp-action="Index">
-                                Ingredients
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link"
-                               asp-controller="Makeup"
-                               asp-action="Index">
-                                Makeup Match
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link"
-                               asp-controller="Routine"
-                               asp-action="Index">
-                                My Routine
-                            </a>
-                        </li>
-
-                    </ul>
-
-                    <div class="navbar-actions">
-
-                        ♡<a asp-controller="MyProducts"
-                        asp-action="Index"
-                        class="nav-icon-link"
-                        title="My Products">
-                        ♡
                     </a>
 
-                        <a asp-area="Identity"
-                           asp-page="/Account/Login"
-                           class="nav-login">
-                            Login
+                    <!-- MOBILE TOGGLER -->
+                    <button class="navbar-toggler"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#mainNavbar"
+                            aria-controls="mainNavbar"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+
+                        <span class="navbar-toggler-icon"></span>
+
+                    </button>
+
+                    <div class="collapse navbar-collapse"
+                         id="mainNavbar">
+
+                        <!-- MAIN LINKS -->
+                        <ul class="navbar-nav mx-auto sereglowy-main-nav">
+
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                   asp-controller="Home"
+                                   asp-action="Index">
+                                    Home
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                   asp-controller="Products"
+                                   asp-action="Index">
+                                    Products
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                   asp-controller="Ingredients"
+                                   asp-action="Index">
+                                    Ingredients
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                   asp-controller="Makeup"
+                                   asp-action="Index">
+                                    Makeup Match
+                                </a>
+                            </li>
+
+                            @if (User.Identity?.IsAuthenticated == true)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link"
+                                       asp-controller="Routine"
+                                       asp-action="Index">
+                                        My Routine
+                                    </a>
+                                </li>
+                            }
+
+                        </ul>
+
+                        <!-- RIGHT SIDE -->
+                        <div class="navbar-user-area">
+
+                            @if (User.Identity?.IsAuthenticated == true)
+                            {
+                                <!-- USER DROPDOWN -->
+                                <div class="dropdown">
+
+                                    <button class="navbar-user-dropdown"
+                                            type="button"
+                                            data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+
+                                        <span class="navbar-user-sparkle">✦</span>
+
+                                        <span class="navbar-user-name">
+                                            @displayName
+                                        </span>
+
+                                        <span class="navbar-dropdown-arrow">▾</span>
+
+                                    </button>
+
+                                    <ul class="dropdown-menu dropdown-menu-end sereglowy-user-menu">
+
+                                        <li>
+                                            <a class="dropdown-item"
+                                               asp-controller="Cart"
+                                               asp-action="Index">
+
+                                                <span class="dropdown-item-icon">🛒</span>
+                                                Cart
+
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a class="dropdown-item"
+                                               asp-controller="MyProducts"
+                                               asp-action="Index">
+
+                                                <span class="dropdown-item-icon">♡</span>
+                                                My Products
+
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a class="dropdown-item"
+                                               asp-controller="Orders"
+                                               asp-action="Index">
+
+                                                <span class="dropdown-item-icon">📦</span>
+                                                My Orders
+
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <hr class="dropdown-divider" />
+                                        </li>
+
+                                        <li>
+                                            <form asp-area="Identity"
+                                                  asp-page="/Account/Logout"
+                                                  asp-route-returnUrl="@Url.Action("Index", "Home")"
+                                                  method="post">
+
+                                                <button type="submit"
+                                                        class="dropdown-item dropdown-logout">
+
+                                                    <span class="dropdown-item-icon">↪</span>
+                                                    Logout
+
+                                                </button>
+
+                                            </form>
+                                        </li>
+
+                                    </ul>
+
+                                </div>
+                            }
+                            else
+                            {
+                                <a asp-area="Identity"
+                                   asp-page="/Account/Login"
+                                   class="navbar-login-link">
+                                    Login
+                                </a>
+
+                                <a asp-area="Identity"
+                                   asp-page="/Account/Register"
+                                   class="navbar-register-button">
+                                    Register
+                                </a>
+                            }
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </nav>
+        </header>
+    }
+    else
+    {
+        <!-- ADMIN TOP BAR -->
+        <div class="admin-topbar">
+
+            <div class="container-fluid">
+
+                <div class="admin-topbar-content">
+
+                    <span class="admin-topbar-label">
+                        ✦ SereGlowy Admin
+                    </span>
+
+                    <div class="admin-topbar-actions">
+
+                        <a asp-controller="Admin"
+                           asp-action="Dashboard"
+                           class="admin-topbar-home">
+                            Home
                         </a>
 
-                        <a asp-area="Identity"
-                           asp-page="/Account/Register"
-                           class="nav-register">
-                            Get Started
-                        </a>
+                        <form asp-area="Identity"
+                              asp-page="/Account/Logout"
+                              asp-route-returnUrl="@Url.Action("Index", "Home")"
+                              method="post">
+
+                            <button type="submit"
+                                    class="admin-topbar-logout">
+                                Logout
+                            </button>
+
+                        </form>
 
                     </div>
 
                 </div>
 
             </div>
-        </nav>
-    </header>
 
+        </div>
+    }
 
     <!-- =========================
          MAIN CONTENT
@@ -135,11 +274,15 @@
 
             <div class="row gy-4">
 
+                <!-- Brand -->
+
                 <div class="col-lg-4">
 
-                    <div class="footer-brand">
-                        SereGlowy
-                        <span>✦</span>
+                    <div class="footer-logo-wrapper">
+                        <img src="~/images/serelogo.png"
+                             asp-append-version="true"
+                             alt="SereGlowy Logo"
+                             class="footer-logo-img" />
                     </div>
 
                     <p class="footer-description">
@@ -151,9 +294,13 @@
                 </div>
 
 
+                <!-- Explore -->
+
                 <div class="col-6 col-lg-2">
 
-                    <h6>Explore</h6>
+                    <h6>
+                        Explore
+                    </h6>
 
                     <ul class="footer-links">
 
@@ -165,56 +312,102 @@
                         </li>
 
                         <li>
-                            <a href="#">
+                            <a asp-controller="Products"
+                               asp-action="Index">
                                 Products
                             </a>
                         </li>
 
                         <li>
-                            <a href="#">
+                            <a asp-controller="Ingredients"
+                               asp-action="Index">
                                 Ingredients
                             </a>
                         </li>
 
+                        <li>
+                            <a asp-controller="Makeup"
+                               asp-action="Index">
+                                Makeup Match
+                            </a>
+                        </li>
+
                     </ul>
 
                 </div>
 
+
+                <!-- Your Glow -->
 
                 <div class="col-6 col-lg-2">
 
-                    <h6>Your Glow</h6>
+                    <h6>
+                        Your Glow
+                    </h6>
 
                     <ul class="footer-links">
 
-                        <li>
-                            <a href="#">
-                                Skin Profile
-                            </a>
-                        </li>
+                        @if (User.Identity?.IsAuthenticated == true)
+                        {
+                            <li>
+                                <a asp-controller="SkinProfile"
+                                   asp-action="Index">
+                                    Skin Profile
+                                </a>
+                            </li>
 
-                        <li>
-                            <a href="#">
-                                My Routine
-                            </a>
-                        </li>
+                            <li>
+                                <a asp-controller="Routine"
+                                   asp-action="Index">
+                                    My Routine
+                                </a>
+                            </li>
 
-                        <li>
-                            <a href="#">
-                                My Products
-                            </a>
-                        </li>
+                            <li>
+                                <a asp-controller="MyProducts"
+                                   asp-action="Index">
+                                    My Products
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a asp-area="Identity"
+                                   asp-page="/Account/Login">
+                                    Skin Profile
+                                </a>
+                            </li>
+
+                            <li>
+                                <a asp-area="Identity"
+                                   asp-page="/Account/Login">
+                                    My Routine
+                                </a>
+                            </li>
+
+                            <li>
+                                <a asp-area="Identity"
+                                   asp-page="/Account/Login">
+                                    My Products
+                                </a>
+                            </li>
+                        }
 
                     </ul>
 
                 </div>
 
+
+                <!-- Note -->
 
                 <div class="col-lg-4">
 
                     <div class="footer-note">
 
-                        <span>GLOW WITH INTENTION ✦</span>
+                        <span>
+                            GLOW WITH INTENTION ✦
+                        </span>
 
                         <p>
                             Personalized skincare organization
@@ -227,6 +420,8 @@
 
             </div>
 
+
+            <!-- Footer Bottom -->
 
             <div class="footer-bottom">
 
@@ -246,11 +441,21 @@
     </footer>
 
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- =========================
+         SCRIPTS
+    ========================== -->
 
-    @await RenderSectionAsync("Scripts", required: false)
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/js/site.js"
+            asp-append-version="true">
+    </script>
+
+    @await RenderSectionAsync(
+        "Scripts",
+        required: false)
 
 </body>
 </html>

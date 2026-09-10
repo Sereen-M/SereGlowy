@@ -1,0 +1,213 @@
+﻿@model SereGlowy.Models.Order
+
+@{
+    ViewData["Title"] = "Order Details";
+}
+
+<section class="admin-manage-page">
+
+    <div class="container">
+
+        <div class="admin-manage-header">
+
+            <div>
+
+                <span class="section-label">
+                    ORDER DETAILS
+                </span>
+
+                <h1>
+                    Order #@Model.OrderId
+                </h1>
+
+                <p>
+                    Placed on
+                    @Model.OrderDate.ToString("dd MMMM yyyy")
+                </p>
+
+            </div>
+
+
+            <a asp-controller="Admin"
+               asp-action="Orders"
+               class="btn btn-outline-glow">
+
+                ← All Orders
+
+            </a>
+
+        </div>
+
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+
+
+        <div class="row g-4">
+
+            <!-- PRODUCTS -->
+
+            <div class="col-lg-8">
+
+                <div class="admin-order-card">
+
+                    <h2>
+                        Ordered Products
+                    </h2>
+
+
+                    @foreach (var item in Model.OrderItems)
+                    {
+                        <div class="admin-order-product">
+
+                            <div class="admin-order-product-image">
+
+                                @if (!string.IsNullOrWhiteSpace(
+                                    item.Product?.ImageUrl))
+                                {
+                                    <img src="@item.Product.ImageUrl"
+                                         alt="@item.Product.ProductName" />
+                                }
+
+                            </div>
+
+
+                            <div>
+
+                                <span class="product-brand">
+                                    @item.Product?.Brand
+                                </span>
+
+                                <h4>
+                                    @item.Product?.ProductName
+                                </h4>
+
+                                <small>
+                                    Quantity: @item.Quantity
+                                </small>
+
+                            </div>
+
+
+                            <strong>
+                                @((item.UnitPrice * item.Quantity)
+                                    .ToString("0.00")) JOD
+                            </strong>
+
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+
+
+            <!-- CUSTOMER / STATUS -->
+
+            <div class="col-lg-4">
+
+                <div class="admin-order-card">
+
+                    <span class="section-label">
+                        CUSTOMER
+                    </span>
+
+                    <h2>
+                        Delivery Details
+                    </h2>
+
+
+                    <div class="order-info-row">
+                        <span>Name</span>
+                        <strong>@Model.FullName</strong>
+                    </div>
+
+                    <div class="order-info-row">
+                        <span>Phone</span>
+                        <strong>@Model.Phone</strong>
+                    </div>
+
+                    <div class="order-info-row">
+                        <span>Address</span>
+                        <strong>@Model.Address</strong>
+                    </div>
+
+
+                    <div class="admin-order-total">
+
+                        <span>Total</span>
+
+                        <strong>
+                            @Model.TotalAmount.ToString("0.00") JOD
+                        </strong>
+
+                    </div>
+
+
+                    <form asp-controller="Admin"
+                          asp-action="UpdateOrderStatus"
+                          method="post"
+                          class="admin-status-form">
+
+                        @Html.AntiForgeryToken()
+
+                        <input type="hidden"
+                               name="id"
+                               value="@Model.OrderId" />
+
+
+                        <label>
+                            Order Status
+                        </label>
+
+                        <select name="status">
+
+                            @foreach (var status in new[]
+                            {
+                                "Placed",
+                                "Processing",
+                                "Shipped",
+                                "Delivered",
+                                "Cancelled"
+                            })
+                            {
+                                if (Model.Status == status)
+                                {
+                                    <option value="@status"
+                                            selected>
+                                        @status
+                                    </option>
+                                }
+                                else
+                                {
+                                    <option value="@status">
+                                        @status
+                                    </option>
+                                }
+                            }
+
+                        </select>
+
+
+                        <button type="submit"
+                                class="btn btn-glow w-100">
+
+                            Update Status
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

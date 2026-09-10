@@ -1,5 +1,7 @@
-﻿@{
-    ViewData["Title"] = "Product Details";
+﻿@model SereGlowy.Models.Product
+
+@{
+    ViewData["Title"] = Model.ProductName;
 }
 
 <section class="product-details-section">
@@ -11,128 +13,132 @@
                 <div class="details-image-box">
 
                     <span class="details-tag">
-                        Cleanser
+                        @(Model.Category?.CategoryName ?? "Skincare")
                     </span>
 
-                    <div class="details-image-placeholder">
-                        Product Image
-                    </div>
+                    @if (!string.IsNullOrWhiteSpace(Model.ImageUrl))
+                    {
+                        <img src="@Model.ImageUrl"
+                             alt="@Model.ProductName"
+                             class="details-product-image" />
+                    }
+                    else
+                    {
+                        <div class="details-image-placeholder">
+                            Product Image
+                        </div>
+                    }
 
                 </div>
             </div>
+
 
             <div class="col-lg-6">
 
                 <div class="details-content">
 
                     <span class="product-brand">
-                        CeraVe
+                        @Model.Brand
                     </span>
 
                     <h1>
-                        Hydrating Facial Cleanser
+                        @Model.ProductName
                     </h1>
 
                     <p class="details-description">
-                        A gentle daily cleanser designed to fit into
-                        a simple skincare routine while helping users
-                        keep their skincare experience organized.
+                        @Model.Description
                     </p>
+
 
                     <div class="details-info">
 
                         <div class="details-info-item">
                             <span>Suitable Skin Type</span>
-                            <strong>Dry / Normal</strong>
+                            <strong>
+                                @Model.SuitableSkinType
+                            </strong>
                         </div>
 
                         <div class="details-info-item">
                             <span>Category</span>
-                            <strong>Cleanser</strong>
+                            <strong>
+                                @(Model.Category?.CategoryName ?? "Skincare")
+                            </strong>
                         </div>
 
                         <div class="details-info-item">
                             <span>Brand</span>
-                            <strong>CeraVe</strong>
+                            <strong>
+                                @Model.Brand
+                            </strong>
                         </div>
 
                     </div>
 
+
                     <div class="details-price">
-                        12.00 JOD
+                        @Model.Price.ToString("0.00") JOD
                     </div>
+
 
                     <div class="details-buttons">
 
-                        <a href="#"
-                           class="btn btn-glow">
-                            Add to My Products
-                        </a>
+                        @if (User.Identity?.IsAuthenticated == true)
+                        {
+                            <!-- ADD TO CART -->
+                            <form asp-controller="Cart"
+                                  asp-action="Add"
+                                  method="post"
+                                  style="display:inline;">
+
+                                @Html.AntiForgeryToken()
+
+                                <input type="hidden"
+                                       name="productId"
+                                       value="@Model.ProductId" />
+
+                                <button type="submit"
+                                        class="btn btn-glow">
+
+                                    🛒 Add to Cart
+
+                                </button>
+
+                            </form>
+
+
+                            <!-- ADD TO MY PRODUCTS -->
+                            <form asp-controller="MyProducts"
+                                  asp-action="Add"
+                                  method="post"
+                                  style="display:inline;">
+
+                                @Html.AntiForgeryToken()
+
+                                <input type="hidden"
+                                       name="productId"
+                                       value="@Model.ProductId" />
+
+                                <button type="submit"
+                                        class="btn btn-outline-glow">
+
+                                    ♡ Add to My Products
+
+                                </button>
+
+                            </form>
+                        }
+
 
                         <a asp-controller="Products"
                            asp-action="Index"
                            class="btn btn-outline-glow">
+
                             Back to Products
+
                         </a>
 
                     </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-</section>
-
-
-<section class="details-extra-section">
-    <div class="container">
-
-        <div class="row g-4">
-
-            <div class="col-md-6">
-
-                <div class="details-extra-card">
-
-                    <span class="section-label">
-                        WHY IT MAY FIT
-                    </span>
-
-                    <h3>
-                        Simple everyday skincare.
-                    </h3>
-
-                    <p>
-                        This product can be included as the cleansing
-                        step in a morning or evening skincare routine.
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="col-md-6">
-
-                <div class="details-extra-card">
-
-                    <span class="section-label">
-                        RELATED INGREDIENTS
-                    </span>
-
-                    <h3>
-                        Learn what’s inside.
-                    </h3>
-
-                    <p>
-                        Explore the skincare ingredients related to
-                        this product in the SereGlowy Ingredients Guide.
-                    </p>
-
-                    <a href="#">
-                        Explore Ingredients →
-                    </a>
 
                 </div>
 

@@ -1,0 +1,254 @@
+﻿@model SereGlowy.Models.SkinProfile
+
+@{
+    ViewData["Title"] = "Create Skin Profile";
+}
+
+<section class="skin-profile-page">
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="section-label">
+                YOUR SKIN PROFILE
+            </span>
+
+            <h1>
+                Tell us a little about your skincare preferences.
+            </h1>
+
+            <p>
+                Your answers help SereGlowy organize your experience
+                and provide more relevant product suggestions.
+            </p>
+
+        </div>
+
+
+        <div class="admin-form-card">
+
+            <form asp-controller="SkinProfile"
+                  asp-action="Create"
+                  method="post">
+
+                @Html.AntiForgeryToken()
+
+                <div asp-validation-summary="ModelOnly"
+                     class="text-danger mb-3">
+                </div>
+
+
+                <div class="row g-4">
+
+                    <div class="col-md-6">
+
+                        <div class="admin-form-group">
+
+                            <label asp-for="SkinType">
+                                What is your skin type?
+                            </label>
+
+                            <select asp-for="SkinType">
+
+                                <option value="">
+                                    Select your skin type
+                                </option>
+
+                                <option value="Dry">
+                                    Dry
+                                </option>
+
+                                <option value="Oily">
+                                    Oily
+                                </option>
+
+                                <option value="Combination">
+                                    Combination
+                                </option>
+
+                                <option value="Normal">
+                                    Normal
+                                </option>
+
+                            </select>
+
+                            <span asp-validation-for="SkinType"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <div class="admin-form-group">
+
+                            <label>
+                                Is your skin sensitive?
+                            </label>
+
+                            <select asp-for="IsSensitive">
+
+                                <option value="">
+                                    Select an option
+                                </option>
+
+                                <option value="true">
+                                    Yes
+                                </option>
+
+                                <option value="false">
+                                    No
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <div class="admin-form-group">
+
+                            <label asp-for="SkinGoal">
+                                What is your main skincare goal?
+                            </label>
+
+                            <select asp-for="SkinGoal">
+
+                                <option value="">
+                                    Select your goal
+                                </option>
+
+                                <option value="Hydration">
+                                    Hydration
+                                </option>
+
+                                <option value="Oil Control">
+                                    Oil Control
+                                </option>
+
+                                <option value="Simple Routine">
+                                    Simple Routine
+                                </option>
+
+                                <option value="Glow">
+                                    Glow
+                                </option>
+
+                                <option value="Balanced Skin">
+                                    Balanced Skin
+                                </option>
+
+                            </select>
+
+                            <span asp-validation-for="SkinGoal"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <div class="admin-form-group">
+
+                            <label asp-for="RoutineExperience">
+                                How experienced are you with skincare?
+                            </label>
+
+                            <select asp-for="RoutineExperience">
+
+                                <option value="">
+                                    Select your experience
+                                </option>
+
+                                <option value="Beginner">
+                                    Beginner
+                                </option>
+
+                                <option value="Intermediate">
+                                    Intermediate
+                                </option>
+
+                                <option value="Experienced">
+                                    Experienced
+                                </option>
+
+                            </select>
+
+                            <span asp-validation-for="RoutineExperience"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <div class="admin-form-group">
+
+                            <label asp-for="MakeupUsage">
+                                How often do you use makeup?
+                            </label>
+
+                            <select asp-for="MakeupUsage">
+
+                                <option value="">
+                                    Select an option
+                                </option>
+
+                                <option value="Rarely">
+                                    Rarely
+                                </option>
+
+                                <option value="Sometimes">
+                                    Sometimes
+                                </option>
+
+                                <option value="Frequently">
+                                    Frequently
+                                </option>
+
+                            </select>
+
+                            <span asp-validation-for="MakeupUsage"
+                                  class="text-danger">
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="admin-form-actions mt-4">
+
+                    <button type="submit"
+                            class="btn btn-glow">
+
+                        Save My Profile
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

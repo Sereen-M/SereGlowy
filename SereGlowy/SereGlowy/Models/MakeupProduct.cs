@@ -8,20 +8,20 @@ namespace SereGlowy.Models
         public int MakeupProductId { get; set; }
 
         [Required]
-        public string ProductName { get; set; }
+        public string ProductName { get; set; } = string.Empty;
 
         [Required]
-        public string Brand { get; set; }
+        public string Brand { get; set; } = string.Empty;
 
-        public string Category { get; set; }
+        public string Category { get; set; } = string.Empty;
 
-        public string Description { get; set; }
+        public string Description { get; set; } = string.Empty;
 
-        public string SuitableSkinType { get; set; }
+        public string SuitableSkinType { get; set; } = string.Empty;
 
-        public string FinishType { get; set; }
+        public string FinishType { get; set; } = string.Empty;
 
-        public string ImageUrl { get; set; }
+        public string ImageUrl { get; set; } = string.Empty;
 
         public bool IsActive { get; set; } = true;
     }

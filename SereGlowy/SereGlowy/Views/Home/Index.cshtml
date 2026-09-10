@@ -24,16 +24,29 @@
                 </p>
 
                 <div class="hero-buttons">
+
                     <a asp-controller="Onboarding"
                        asp-action="Index"
                        class="btn btn-glow">
                         Build My Skin Profile
                     </a>
 
-                    <a href="#how-it-works"
-                       class="btn btn-outline-glow">
-                        Explore SereGlowy
-                    </a>
+                    @if (User.Identity?.IsAuthenticated == true)
+                    {
+                        <a asp-controller="Products"
+                           asp-action="Recommended"
+                           class="btn btn-outline-glow">
+                            View My Recommendations
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="#how-it-works"
+                           class="btn btn-outline-glow">
+                            Explore SereGlowy
+                        </a>
+                    }
+
                 </div>
 
             </div>
@@ -44,27 +57,46 @@
                     <div class="glow-circle glow-one"></div>
                     <div class="glow-circle glow-two"></div>
 
-                    <div class="skin-card">
-                        <span class="card-icon">✦</span>
+                    <div class="skin-card skin-card-video">
 
-                        <p class="small-title">
-                            Your Skin Profile
-                        </p>
+                        <!-- Background Video -->
+                        <video class="skin-bg-video"
+                               autoplay
+                               muted
+                               loop
+                               playsinline>
+                            <source src="@Url.Content("~/video/hero.mp4")"
+                                    type="video/mp4" />
+                        </video>
 
-                        <h3>
-                            Your glow starts with you.
-                        </h3>
+                        <!-- Soft Overlay -->
+                        <div class="skin-video-overlay"></div>
 
-                        <p>
-                            Answer a few simple questions and let
-                            SereGlowy create an experience based
-                            on your preferences.
-                        </p>
+                        <!-- Card Content -->
+                        <div class="skin-card-content">
 
-                        <div class="profile-items">
-                            <span>Skin Type</span>
-                            <span>Goals</span>
-                            <span>Routine</span>
+                            <span class="card-icon">✦</span>
+
+                            <p class="small-title">
+                                Your Skin Profile
+                            </p>
+
+                            <h3>
+                                Your glow starts with you.
+                            </h3>
+
+                            <p>
+                                Answer a few simple questions and let
+                                SereGlowy create an experience based
+                                on your preferences.
+                            </p>
+
+                            <div class="profile-items">
+                                <span>Skin Type</span>
+                                <span>Goals</span>
+                                <span>Routine</span>
+                            </div>
+
                         </div>
 
                     </div>
@@ -77,10 +109,15 @@
 </section>
 
 
+<!-- ===============================
+     HOW IT WORKS
+================================ -->
+
 <section class="how-section" id="how-it-works">
     <div class="container">
 
         <div class="section-heading text-center">
+
             <span>HOW IT WORKS</span>
 
             <h2>
@@ -91,16 +128,19 @@
                 A few simple steps to make your skincare journey
                 feel more personal and organized.
             </p>
+
         </div>
+
 
         <div class="row g-4 mt-4">
 
+            <!-- Skin Profile -->
             <div class="col-md-4">
-                <div class="step-card">
+                <div class="step-card step-card-one">
 
-                    <div class="step-number">01</div>
-
-                    <h4>Tell us about your skin</h4>
+                    <h4>
+                        Tell us about your skin
+                    </h4>
 
                     <p>
                         Complete a short questionnaire about your
@@ -110,12 +150,14 @@
                 </div>
             </div>
 
+
+            <!-- Routine -->
             <div class="col-md-4">
-                <div class="step-card">
+                <div class="step-card step-card-two">
 
-                    <div class="step-number">02</div>
-
-                    <h4>Get your routine</h4>
+                    <h4>
+                        Get your routine
+                    </h4>
 
                     <p>
                         Receive a simple morning and evening routine
@@ -125,12 +167,14 @@
                 </div>
             </div>
 
+
+            <!-- Matches -->
             <div class="col-md-4">
-                <div class="step-card">
+                <div class="step-card step-card-three">
 
-                    <div class="step-number">03</div>
-
-                    <h4>Discover your matches</h4>
+                    <h4>
+                        Discover your matches
+                    </h4>
 
                     <p>
                         Explore skincare products and ingredients
@@ -146,12 +190,17 @@
 </section>
 
 
+<!-- ===============================
+     EXPLORE SKINCARE
+================================ -->
+
 <section class="explore-section">
     <div class="container">
 
         <div class="row align-items-center">
 
             <div class="col-lg-5">
+
                 <span class="section-label">
                     EXPLORE SKINCARE
                 </span>
@@ -166,38 +215,92 @@
                     ingredients and keep your own products organized.
                 </p>
 
-                <a href="#"
+                <a asp-controller="Products"
+                   asp-action="Index"
                    class="btn btn-glow">
                     Explore Products
                 </a>
+
             </div>
+
 
             <div class="col-lg-7">
 
                 <div class="category-grid">
 
+                    <!-- Cleanser -->
                     <div class="category-card">
-                        <span>01</span>
-                        <h4>Cleanser</h4>
-                        <p>Start fresh.</p>
+
+                        <img src="~/images/cleanser_category.png"
+                             asp-append-version="true"
+                             alt="Cleanser" />
+
+                        <span class="category-number">
+                            01
+                        </span>
+
+                        <div class="category-glass">
+                            <h4>Cleanser</h4>
+                            <p>Start fresh.</p>
+                        </div>
+
                     </div>
 
+
+                    <!-- Serum -->
                     <div class="category-card">
-                        <span>02</span>
-                        <h4>Serum</h4>
-                        <p>Target your goals.</p>
+
+                        <img src="~/images/serum_category.png"
+                             asp-append-version="true"
+                             alt="Serum" />
+
+                        <span class="category-number">
+                            02
+                        </span>
+
+                        <div class="category-glass">
+                            <h4>Serum</h4>
+                            <p>Target your goals.</p>
+                        </div>
+
                     </div>
 
+
+                    <!-- Moisturizer -->
                     <div class="category-card">
-                        <span>03</span>
-                        <h4>Moisturizer</h4>
-                        <p>Keep your skin hydrated.</p>
+
+                        <img src="~/images/moisturizer_category.png"
+                             asp-append-version="true"
+                             alt="Moisturizer" />
+
+                        <span class="category-number">
+                            03
+                        </span>
+
+                        <div class="category-glass">
+                            <h4>Moisturizer</h4>
+                            <p>Keep your skin hydrated.</p>
+                        </div>
+
                     </div>
 
+
+                    <!-- Sunscreen -->
                     <div class="category-card">
-                        <span>04</span>
-                        <h4>Sunscreen</h4>
-                        <p>Your everyday essential.</p>
+
+                        <img src="~/images/sunscreen_category.png"
+                             asp-append-version="true"
+                             alt="Sunscreen" />
+
+                        <span class="category-number">
+                            04
+                        </span>
+
+                        <div class="category-glass">
+                            <h4>Sunscreen</h4>
+                            <p>Your everyday essential.</p>
+                        </div>
+
                     </div>
 
                 </div>
@@ -210,12 +313,18 @@
 </section>
 
 
+<!-- ===============================
+     FEATURES
+================================ -->
+
 <section class="features-section">
     <div class="container">
 
         <div class="row g-4">
 
+            <!-- Ingredients -->
             <div class="col-md-6">
+
                 <div class="feature-large-card">
 
                     <span class="section-label">
@@ -232,14 +341,19 @@
                         related products.
                     </p>
 
-                    <a href="#">
+                    <a asp-controller="Ingredients"
+                       asp-action="Index">
                         Explore Ingredients →
                     </a>
 
                 </div>
+
             </div>
 
+
+            <!-- Makeup -->
             <div class="col-md-6">
+
                 <div class="feature-large-card makeup-card">
 
                     <span class="section-label">
@@ -255,11 +369,13 @@
                         finish preference and your SereGlowy profile.
                     </p>
 
-                    <a href="#">
+                    <a asp-controller="Makeup"
+                       asp-action="Index">
                         Find Your Match →
                     </a>
 
                 </div>
+
             </div>
 
         </div>
@@ -268,12 +384,18 @@
 </section>
 
 
+<!-- ===============================
+     FINAL CTA
+================================ -->
+
 <section class="final-cta">
     <div class="container">
 
         <div class="cta-box text-center">
 
-            <span>✦ SEREGLOWY ✦</span>
+            <span>
+                ✦ SEREGLOWY ✦
+            </span>
 
             <h2>
                 Ready to start your glow journey?
@@ -284,7 +406,8 @@
                 that feels more like you.
             </p>
 
-            <a href="#"
+            <a asp-controller="Onboarding"
+               asp-action="Index"
                class="btn btn-light-glow">
                 Get Started
             </a>

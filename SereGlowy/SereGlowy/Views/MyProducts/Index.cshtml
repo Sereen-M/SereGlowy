@@ -1,11 +1,19 @@
-﻿@{
+﻿@model IEnumerable<SereGlowy.Models.MyProduct>
+
+@{
     ViewData["Title"] = "My Products";
 }
 
 <section class="my-products-page">
+
     <div class="container">
 
+        <!-- ===============================
+             HEADER
+        ================================ -->
+
         <div class="my-products-header text-center">
+
             <span class="section-label">
                 MY PRODUCTS
             </span>
@@ -18,199 +26,286 @@
                 Keep track of the skincare products you use
                 and manage your personal collection.
             </p>
+
         </div>
 
+
+        <!-- ===============================
+             SUCCESS MESSAGE
+        ================================ -->
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success mt-4">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+
+
+        <!-- ===============================
+             SUMMARY
+        ================================ -->
 
         <div class="my-products-summary">
 
             <div class="summary-item">
-                <span>Saved Products</span>
-                <strong>4</strong>
+
+                <span>
+                    Saved Products
+                </span>
+
+                <strong>
+                    @ViewBag.SavedCount
+                </strong>
+
             </div>
 
-            <div class="summary-item">
-                <span>Routine Products</span>
-                <strong>3</strong>
-            </div>
 
             <div class="summary-item">
-                <span>Categories</span>
-                <strong>4</strong>
+
+                <span>
+                    Categories
+                </span>
+
+                <strong>
+                    @ViewBag.CategoryCount
+                </strong>
+
+            </div>
+
+
+            <div class="summary-item">
+
+                <span>
+                    Your Shelf
+                </span>
+
+                <strong>
+                    ♡
+                </strong>
+
             </div>
 
         </div>
 
+
+        <!-- ===============================
+             PRODUCTS
+        ================================ -->
 
         <div class="row g-4 mt-2">
 
-            <div class="col-md-6 col-lg-4">
-                <div class="saved-product-card">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <div class="col-md-6 col-lg-4">
 
-                    <div class="saved-product-image">
-                        <span class="saved-category">
-                            Cleanser
-                        </span>
+                        <div class="saved-product-card">
 
-                        <div class="image-placeholder">
-                            Product Image
+                            <!-- IMAGE -->
+
+                            <div class="saved-product-image">
+
+                                <span class="saved-category">
+                                    @(item.Product?.Category?.CategoryName
+                                        ?? "Skincare")
+                                </span>
+
+
+                                @if (!string.IsNullOrWhiteSpace(
+                                    item.Product?.ImageUrl))
+                                {
+                                    <img src="@item.Product.ImageUrl"
+                                         alt="@item.Product.ProductName" />
+                                }
+                                else
+                                {
+                                    <div class="image-placeholder">
+                                        Product Image
+                                    </div>
+                                }
+
+                            </div>
+
+
+                            <!-- CONTENT -->
+
+                            <div class="saved-product-content">
+
+                                <span class="product-brand">
+                                    @item.Product?.Brand
+                                </span>
+
+                                <h3>
+                                    @item.Product?.ProductName
+                                </h3>
+
+                                <p>
+                                    @item.Product?.Description
+                                </p>
+
+
+                                <!-- ACTIONS -->
+
+                                <div class="saved-product-actions">
+
+                                    <!-- DETAILS -->
+
+                                    <a asp-controller="Products"
+                                       asp-action="Details"
+                                       asp-route-id="@item.ProductId">
+
+                                        View Details
+
+                                    </a>
+
+
+                                    <!-- REMOVE FORM -->
+
+                                    <form id="removeForm-@item.MyProductId"
+                                          asp-controller="MyProducts"
+                                          asp-action="Remove"
+                                          asp-route-id="@item.MyProductId"
+                                          method="post">
+
+                                        @Html.AntiForgeryToken()
+
+
+                                        <button type="button"
+                                                class="remove-product-btn"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#removeModal-@item.MyProductId">
+
+                                            Remove
+
+                                        </button>
+
+                                    </form>
+
+                                </div>
+
+                            </div>
+
                         </div>
+
                     </div>
 
-                    <div class="saved-product-content">
 
-                        <span class="product-brand">
-                            CeraVe
-                        </span>
+                    <!-- ===============================
+                         REMOVE CONFIRMATION MODAL
+                    ================================ -->
 
-                        <h3>
-                            Hydrating Facial Cleanser
-                        </h3>
+                    <div class="modal fade"
+                         id="removeModal-@item.MyProductId"
+                         tabindex="-1"
+                         aria-hidden="true">
 
-                        <p>
-                            A simple cleanser saved to your skincare shelf.
-                        </p>
+                        <div class="modal-dialog modal-dialog-centered">
 
-                        <div class="saved-product-actions">
+                            <div class="modal-content sereglowy-remove-modal">
 
-                            <a asp-controller="Products"
-                               asp-action="Details"
-                               asp-route-id="1">
-                                View Details
-                            </a>
 
-                            <button type="button"
-                                    class="remove-product-btn">
-                                Remove
-                            </button>
+                                <!-- ICON -->
+
+                                <div class="remove-modal-icon">
+                                    ♡
+                                </div>
+
+
+                                <!-- BODY -->
+
+                                <div class="remove-modal-body">
+
+                                    <span class="section-label">
+                                        MY PRODUCTS
+                                    </span>
+
+                                    <h3>
+                                        Remove this product?
+                                    </h3>
+
+                                    <p>
+                                        Are you sure you want to remove
+
+                                        <strong>
+                                            @item.Product?.ProductName
+                                        </strong>
+
+                                        from your skincare shelf?
+                                    </p>
+
+                                </div>
+
+
+                                <!-- ACTIONS -->
+
+                                <div class="remove-modal-actions">
+
+                                    <button type="button"
+                                            class="remove-modal-cancel"
+                                            data-bs-dismiss="modal">
+
+                                        Keep It
+
+                                    </button>
+
+
+                                    <button type="submit"
+                                            form="removeForm-@item.MyProductId"
+                                            class="remove-modal-confirm">
+
+                                        Yes, Remove
+
+                                    </button>
+
+                                </div>
+
+                            </div>
 
                         </div>
+
+                    </div>
+                }
+            }
+
+            else
+            {
+                <!-- ===============================
+                     EMPTY STATE
+                ================================ -->
+
+                <div class="col-12">
+
+                    <div class="my-products-empty-note">
+
+                        <span class="section-label">
+                            YOUR SHELF IS EMPTY
+                        </span>
+
+                        <h2>
+                            Add products to your shelf.
+                        </h2>
+
+                        <p>
+                            Explore the skincare collection and save
+                            products you want to keep organized.
+                        </p>
+
+                        <a asp-controller="Products"
+                           asp-action="Index"
+                           class="btn btn-glow">
+
+                            Explore Products
+
+                        </a>
 
                     </div>
 
                 </div>
-            </div>
-
-
-            <div class="col-md-6 col-lg-4">
-                <div class="saved-product-card">
-
-                    <div class="saved-product-image">
-                        <span class="saved-category">
-                            Serum
-                        </span>
-
-                        <div class="image-placeholder">
-                            Product Image
-                        </div>
-                    </div>
-
-                    <div class="saved-product-content">
-
-                        <span class="product-brand">
-                            The Ordinary
-                        </span>
-
-                        <h3>
-                            Niacinamide Serum
-                        </h3>
-
-                        <p>
-                            A serum saved as part of your skincare collection.
-                        </p>
-
-                        <div class="saved-product-actions">
-
-                            <a asp-controller="Products"
-                               asp-action="Details"
-                               asp-route-id="2">
-                                View Details
-                            </a>
-
-                            <button type="button"
-                                    class="remove-product-btn">
-                                Remove
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
-
-            <div class="col-md-6 col-lg-4">
-                <div class="saved-product-card">
-
-                    <div class="saved-product-image">
-                        <span class="saved-category">
-                            Sunscreen
-                        </span>
-
-                        <div class="image-placeholder">
-                            Product Image
-                        </div>
-                    </div>
-
-                    <div class="saved-product-content">
-
-                        <span class="product-brand">
-                            Beauty of Joseon
-                        </span>
-
-                        <h3>
-                            Relief Sun SPF
-                        </h3>
-
-                        <p>
-                            A sunscreen saved for your morning routine.
-                        </p>
-
-                        <div class="saved-product-actions">
-
-                            <a asp-controller="Products"
-                               asp-action="Details"
-                               asp-route-id="3">
-                                View Details
-                            </a>
-
-                            <button type="button"
-                                    class="remove-product-btn">
-                                Remove
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-
-
-        <div class="my-products-empty-note">
-
-            <span class="section-label">
-                DISCOVER MORE
-            </span>
-
-            <h2>
-                Add more products to your shelf.
-            </h2>
-
-            <p>
-                Explore the skincare collection and save products
-                you want to keep organized in SereGlowy.
-            </p>
-
-            <a asp-controller="Products"
-               asp-action="Index"
-               class="btn btn-glow">
-                Explore Products
-            </a>
+            }
 
         </div>
 
     </div>
+
 </section>

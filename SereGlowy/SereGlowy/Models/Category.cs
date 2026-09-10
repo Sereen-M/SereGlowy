@@ -1,5 +1,4 @@
-﻿using Microsoft.CodeAnalysis;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace SereGlowy.Models
 {
@@ -9,10 +8,10 @@ namespace SereGlowy.Models
         public int CategoryId { get; set; }
 
         [Required]
-        public string CategoryName { get; set; }
+        public string CategoryName { get; set; } = string.Empty;
 
-        public string Description { get; set; }
+        public string Description { get; set; } = string.Empty;
 
-        public List<Product> Products { get; set; }
+        public List<Product>? Products { get; set; }
     }
 }

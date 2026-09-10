@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<SereGlowy.Models.Product>
+
+@{
     ViewData["Title"] = "Products";
 }
 
@@ -45,310 +47,130 @@
         </div>
 
 
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success mt-4">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+
+        @if (TempData["InfoMessage"] != null)
+        {
+            <div class="alert alert-info mt-4">
+                @TempData["InfoMessage"]
+            </div>
+        }
+
+
         <div class="row g-4 mt-2">
 
-            <div class="col-md-6 col-lg-4">
-                <div class="product-card">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var product in Model)
+                {
+                    <div class="col-md-6 col-lg-4">
 
-                    <div class="product-image">
-                        <span class="product-tag">
-                            Cleanser
-                        </span>
+                        <div class="product-card">
 
-                        <div class="image-placeholder">
-                            Product Image
+                            <div class="product-image">
+
+                                <span class="product-tag">
+                                    @(product.Category?.CategoryName ?? "Skincare")
+                                </span>
+
+                                @if (!string.IsNullOrWhiteSpace(product.ImageUrl))
+                                {
+                                    <img src="@product.ImageUrl"
+                                         alt="@product.ProductName"
+                                         class="img-fluid" />
+                                }
+                                else
+                                {
+                                    <div class="image-placeholder">
+                                        Product Image
+                                    </div>
+                                }
+
+                            </div>
+
+
+                            <div class="product-content">
+
+                                <span class="product-brand">
+                                    @product.Brand
+                                </span>
+
+                                <h3>
+                                    @product.ProductName
+                                </h3>
+
+                                <p>
+                                    @product.Description
+                                </p>
+
+
+                                <div class="product-bottom">
+
+                                    <span class="product-price">
+                                        @product.Price.ToString("0.00") JOD
+                                    </span>
+
+                                    <a asp-controller="Products"
+                                       asp-action="Details"
+                                       asp-route-id="@product.ProductId"
+                                       class="product-link">
+
+                                        View Details →
+
+                                    </a>
+
+                                </div>
+
+
+                                @if (User.Identity?.IsAuthenticated == true)
+                                {
+                                    <form asp-controller="Cart"
+                                          asp-action="Add"
+                                          method="post"
+                                          class="mt-3">
+
+                                        @Html.AntiForgeryToken()
+
+                                        <input type="hidden"
+                                               name="productId"
+                                               value="@product.ProductId" />
+
+                                        <button type="submit"
+                                                class="btn btn-glow w-100">
+
+                                            🛒 Add to Cart
+
+                                        </button>
+
+                                    </form>
+                                }
+
+                            </div>
+
                         </div>
-                    </div>
-
-                    <div class="product-content">
-
-                        <span class="product-brand">
-                            CeraVe
-                        </span>
-
-                        <h3>
-                            Hydrating Facial Cleanser
-                        </h3>
-
-                        <p>
-                            A gentle cleanser designed for
-                            a simple everyday skincare routine.
-                        </p>
-
-                        <div class="product-bottom">
-
-                            <span class="product-price">
-                                12.00 JOD
-                            </span>
-
-                            <a asp-controller="Products"
-                               asp-action="Details"
-                               asp-route-id="1"
-                               class="product-link">
-                                View Details →
-                            </a>
-
-                        </div>
 
                     </div>
+                }
+            }
+            else
+            {
+                <div class="col-12 text-center py-5">
+
+                    <h3>
+                        No products available yet.
+                    </h3>
+
+                    <p>
+                        Products added by the admin will appear here.
+                    </p>
 
                 </div>
-            </div>
-
-
-            <div class="col-md-6 col-lg-4">
-                <div class="product-card">
-
-                    <div class="product-image">
-
-                        <span class="product-tag">
-                            Serum
-                        </span>
-
-                        <div class="image-placeholder">
-                            Product Image
-                        </div>
-
-                    </div>
-
-                    <div class="product-content">
-
-                        <span class="product-brand">
-                            The Ordinary
-                        </span>
-
-                        <h3>
-                            Niacinamide Serum
-                        </h3>
-
-                        <p>
-                            A lightweight serum for users
-                            looking to build a simple routine.
-                        </p>
-
-                        <div class="product-bottom">
-
-                            <span class="product-price">
-                                10.00 JOD
-                            </span>
-
-                            <a asp-controller="Products"
-                               asp-action="Details"
-                               asp-route-id="2"
-                               class="product-link">
-                                View Details →
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
-
-            <div class="col-md-6 col-lg-4">
-                <div class="product-card">
-
-                    <div class="product-image">
-
-                        <span class="product-tag">
-                            Moisturizer
-                        </span>
-
-                        <div class="image-placeholder">
-                            Product Image
-                        </div>
-
-                    </div>
-
-                    <div class="product-content">
-
-                        <span class="product-brand">
-                            La Roche-Posay
-                        </span>
-
-                        <h3>
-                            Hydrating Moisturizer
-                        </h3>
-
-                        <p>
-                            A simple moisturizing option
-                            for daily skincare routines.
-                        </p>
-
-                        <div class="product-bottom">
-
-                            <span class="product-price">
-                                18.00 JOD
-                            </span>
-
-                            <a asp-controller="Products"
-                               asp-action="Details"
-                               asp-route-id="3"
-                               class="product-link">
-                                View Details →
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
-
-            <div class="col-md-6 col-lg-4">
-                <div class="product-card">
-
-                    <div class="product-image">
-
-                        <span class="product-tag">
-                            Sunscreen
-                        </span>
-
-                        <div class="image-placeholder">
-                            Product Image
-                        </div>
-
-                    </div>
-
-                    <div class="product-content">
-
-                        <span class="product-brand">
-                            Beauty of Joseon
-                        </span>
-
-                        <h3>
-                            Relief Sun SPF
-                        </h3>
-
-                        <p>
-                            An everyday sunscreen option
-                            to complete a morning routine.
-                        </p>
-
-                        <div class="product-bottom">
-
-                            <span class="product-price">
-                                15.00 JOD
-                            </span>
-
-                            <a asp-controller="Products"
-                               asp-action="Details"
-                               asp-route-id="4"
-                               class="product-link">
-                                View Details →
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
-
-            <div class="col-md-6 col-lg-4">
-                <div class="product-card">
-
-                    <div class="product-image">
-
-                        <span class="product-tag">
-                            Serum
-                        </span>
-
-                        <div class="image-placeholder">
-                            Product Image
-                        </div>
-
-                    </div>
-
-                    <div class="product-content">
-
-                        <span class="product-brand">
-                            COSRX
-                        </span>
-
-                        <h3>
-                            Hydrating Serum
-                        </h3>
-
-                        <p>
-                            A lightweight serum for
-                            hydration-focused routines.
-                        </p>
-
-                        <div class="product-bottom">
-
-                            <span class="product-price">
-                                17.00 JOD
-                            </span>
-
-                            <a asp-controller="Products"
-                               asp-action="Details"
-                               asp-route-id="5"
-                               class="product-link">
-                                View Details →
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
-
-            <div class="col-md-6 col-lg-4">
-                <div class="product-card">
-
-                    <div class="product-image">
-
-                        <span class="product-tag">
-                            Moisturizer
-                        </span>
-
-                        <div class="image-placeholder">
-                            Product Image
-                        </div>
-
-                    </div>
-
-                    <div class="product-content">
-
-                        <span class="product-brand">
-                            The Inkey List
-                        </span>
-
-                        <h3>
-                            Daily Moisturizer
-                        </h3>
-
-                        <p>
-                            A simple moisturizer designed
-                            for an easy daily routine.
-                        </p>
-
-                        <div class="product-bottom">
-
-                            <span class="product-price">
-                                14.00 JOD
-                            </span>
-
-                            <a asp-controller="Products"
-                               asp-action="Details"
-                               asp-route-id="6"
-                               class="product-link">
-                                View Details →
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
+            }
 
         </div>
 

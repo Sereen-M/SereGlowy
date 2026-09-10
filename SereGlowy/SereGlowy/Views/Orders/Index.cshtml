@@ -1,0 +1,142 @@
+﻿@model IEnumerable<SereGlowy.Models.Order>
+
+@{
+    ViewData["Title"] = "My Orders";
+}
+
+<section class="my-orders-page">
+
+    <div class="container">
+
+        <div class="my-orders-header text-center">
+
+            <span class="section-label">
+                MY ORDERS
+            </span>
+
+            <h1>
+                Your glow orders.
+            </h1>
+
+            <p>
+                Review your previous orders and follow their current status.
+            </p>
+
+        </div>
+
+
+        @if (Model != null && Model.Any())
+        {
+            <div class="orders-wrapper">
+
+                @foreach (var order in Model)
+                {
+                    <div class="order-card">
+
+                        <div class="order-card-main">
+
+                            <div>
+                                <span class="order-small-label">
+                                    ORDER
+                                </span>
+
+                                <h3>
+                                    #@order.OrderId
+                                </h3>
+                            </div>
+
+
+                            <div>
+                                <span class="order-small-label">
+                                    DATE
+                                </span>
+
+                                <strong>
+                                    @order.OrderDate.ToString("dd MMM yyyy")
+                                </strong>
+                            </div>
+
+
+                            <div>
+                                <span class="order-small-label">
+                                    ITEMS
+                                </span>
+
+                                <strong>
+                                    @order.OrderItems.Sum(i => i.Quantity)
+                                </strong>
+                            </div>
+
+
+                            <div>
+                                <span class="order-small-label">
+                                    TOTAL
+                                </span>
+
+                                <strong>
+                                    @order.TotalAmount.ToString("0.00") JOD
+                                </strong>
+                            </div>
+
+
+                            <div>
+                                <span class="order-small-label">
+                                    STATUS
+                                </span>
+
+                                <span class="order-status">
+                                    @order.Status
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="order-card-action">
+
+                            <a asp-controller="Orders"
+                               asp-action="Details"
+                               asp-route-id="@order.OrderId"
+                               class="order-details-link">
+
+                                View Order →
+
+                            </a>
+
+                        </div>
+
+                    </div>
+                }
+
+            </div>
+        }
+        else
+        {
+            <div class="orders-empty">
+
+                <div class="orders-empty-icon">
+                    🛍
+                </div>
+
+                <h2>
+                    No orders yet.
+                </h2>
+
+                <p>
+                    Your completed orders will appear here after checkout.
+                </p>
+
+                <a asp-controller="Products"
+                   asp-action="Index"
+                   class="btn btn-glow">
+
+                    Explore Products
+
+                </a>
+
+            </div>
+        }
+
+    </div>
+
+</section>

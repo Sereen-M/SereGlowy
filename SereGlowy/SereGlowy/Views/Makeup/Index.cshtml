@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<SereGlowy.Models.MakeupProduct>
+
+@{
     ViewData["Title"] = "Makeup Match";
 }
 
@@ -23,188 +25,186 @@
         </div>
 
 
-        <div class="makeup-profile-summary">
-
-            <span>
-                Skin Type:
-                <strong>Combination</strong>
-            </span>
-
-            <span>
-                Makeup Usage:
-                <strong>Sometimes</strong>
-            </span>
-
-            <span>
-                Preferred Look:
-                <strong>Natural Glow</strong>
-            </span>
-
-        </div>
-
-
         <div class="makeup-filters">
 
-            <select>
-                <option>All Categories</option>
-                <option>Foundation</option>
-                <option>Primer</option>
-                <option>Concealer</option>
+            <select id="categoryFilter">
+                <option value="">All Categories</option>
+
+                @foreach (var category in Model
+                    .Where(m => !string.IsNullOrWhiteSpace(m.Category))
+                    .Select(m => m.Category)
+                    .Distinct()
+                    .OrderBy(c => c))
+                {
+                    <option value="@category">
+                        @category
+                    </option>
+                }
             </select>
 
-            <select>
-                <option>All Finishes</option>
-                <option>Dewy</option>
-                <option>Natural</option>
-                <option>Matte</option>
+
+            <select id="finishFilter">
+                <option value="">All Finishes</option>
+
+                @foreach (var finish in Model
+                    .Where(m => !string.IsNullOrWhiteSpace(m.FinishType))
+                    .Select(m => m.FinishType)
+                    .Distinct()
+                    .OrderBy(f => f))
+                {
+                    <option value="@finish">
+                        @finish
+                    </option>
+                }
             </select>
 
         </div>
 
 
-        <div class="row g-4 mt-2">
+        <div class="row g-4 mt-2" id="makeupProducts">
 
-            <div class="col-md-6 col-lg-4">
-                <div class="makeup-product-card">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var product in Model)
+                {
+                    <div class="col-md-6 col-lg-4 makeup-item"
+                         data-category="@product.Category"
+                         data-finish="@product.FinishType">
 
-                    <div class="makeup-image">
+                        <div class="makeup-product-card">
 
-                        <span class="makeup-badge">
-                            Natural Finish
-                        </span>
+                            <div class="makeup-image">
 
-                        <div class="image-placeholder">
-                            Makeup Image
+                                @if (!string.IsNullOrWhiteSpace(product.FinishType))
+                                {
+                                    <span class="makeup-badge">
+                                        @product.FinishType
+                                    </span>
+                                }
+
+                                @if (!string.IsNullOrWhiteSpace(product.ImageUrl))
+                                {
+                                    <img src="@product.ImageUrl"
+                                         alt="@product.ProductName"
+                                         class="img-fluid" />
+                                }
+                                else
+                                {
+                                    <div class="image-placeholder">
+                                        Makeup Image
+                                    </div>
+                                }
+
+                            </div>
+
+
+                            <div class="makeup-content">
+
+                                <span class="product-brand">
+                                    @product.Brand
+                                </span>
+
+                                <h3>
+                                    @product.ProductName
+                                </h3>
+
+                                <p>
+                                    @product.Description
+                                </p>
+
+
+                                <div class="makeup-match-box">
+
+                                    <span>
+                                        Why it may fit
+                                    </span>
+
+                                    <small>
+                                        @product.SuitableSkinType
+
+                                        @if (!string.IsNullOrWhiteSpace(product.SuitableSkinType)
+                                            && !string.IsNullOrWhiteSpace(product.FinishType))
+                                        {
+                                            <text> • </text>
+                                        }
+
+                                        @product.FinishType
+                                    </small>
+
+                                </div>
+
+                            </div>
+
                         </div>
 
                     </div>
+                }
+            }
+            else
+            {
+                <div class="col-12 text-center py-5">
 
-                    <div class="makeup-content">
-
-                        <span class="product-brand">
-                            Rare Beauty
-                        </span>
-
-                        <h3>
-                            Liquid Touch Foundation
-                        </h3>
-
-                        <p>
-                            A lightweight foundation option for users
-                            who prefer a natural-looking finish.
-                        </p>
-
-                        <div class="makeup-match-box">
-                            <span>Why it may fit</span>
-                            <small>
-                                Combination Skin • Natural Finish
-                            </small>
-                        </div>
-
-                        <a href="#">
-                            View Details →
-                        </a>
-
-                    </div>
+                    <p>
+                        No makeup products available yet.
+                    </p>
 
                 </div>
-            </div>
-
-
-            <div class="col-md-6 col-lg-4">
-                <div class="makeup-product-card">
-
-                    <div class="makeup-image">
-
-                        <span class="makeup-badge">
-                            Dewy Finish
-                        </span>
-
-                        <div class="image-placeholder">
-                            Makeup Image
-                        </div>
-
-                    </div>
-
-                    <div class="makeup-content">
-
-                        <span class="product-brand">
-                            e.l.f.
-                        </span>
-
-                        <h3>
-                            Hydrating Primer
-                        </h3>
-
-                        <p>
-                            A primer option for users who prefer
-                            a softer and more hydrated makeup base.
-                        </p>
-
-                        <div class="makeup-match-box">
-                            <span>Why it may fit</span>
-                            <small>
-                                Hydration • Dewy Finish
-                            </small>
-                        </div>
-
-                        <a href="#">
-                            View Details →
-                        </a>
-
-                    </div>
-
-                </div>
-            </div>
-
-
-            <div class="col-md-6 col-lg-4">
-                <div class="makeup-product-card">
-
-                    <div class="makeup-image">
-
-                        <span class="makeup-badge">
-                            Soft Matte
-                        </span>
-
-                        <div class="image-placeholder">
-                            Makeup Image
-                        </div>
-
-                    </div>
-
-                    <div class="makeup-content">
-
-                        <span class="product-brand">
-                            Fenty Beauty
-                        </span>
-
-                        <h3>
-                            Soft Matte Foundation
-                        </h3>
-
-                        <p>
-                            A makeup option for users who prefer
-                            a smoother and less shiny finish.
-                        </p>
-
-                        <div class="makeup-match-box">
-                            <span>Why it may fit</span>
-                            <small>
-                                Combination Skin • Soft Matte
-                            </small>
-                        </div>
-
-                        <a href="#">
-                            View Details →
-                        </a>
-
-                    </div>
-
-                </div>
-            </div>
+            }
 
         </div>
 
     </div>
 </section>
+
+
+<script>
+    const categoryFilter = document.getElementById("categoryFilter");
+    const finishFilter = document.getElementById("finishFilter");
+
+    function filterMakeupProducts() {
+
+        const selectedCategory =
+            categoryFilter.value.toLowerCase();
+
+        const selectedFinish =
+            finishFilter.value.toLowerCase();
+
+        const products =
+            document.querySelectorAll(".makeup-item");
+
+        products.forEach(function(product) {
+
+            const category =
+                product.dataset.category.toLowerCase();
+
+            const finish =
+                product.dataset.finish.toLowerCase();
+
+            const categoryMatch =
+                selectedCategory === "" ||
+                category === selectedCategory;
+
+            const finishMatch =
+                selectedFinish === "" ||
+                finish === selectedFinish;
+
+            if (categoryMatch && finishMatch) {
+                product.style.display = "";
+            }
+            else {
+                product.style.display = "none";
+            }
+
+        });
+    }
+
+    categoryFilter.addEventListener(
+        "change",
+        filterMakeupProducts
+    );
+
+    finishFilter.addEventListener(
+        "change",
+        filterMakeupProducts
+    );
+</script>

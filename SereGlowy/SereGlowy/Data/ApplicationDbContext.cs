@@ -15,5 +15,8 @@ namespace SereGlowy.Data
         public DbSet<MyProduct> MyProducts { get; set; }
         public DbSet<MakeupProduct> MakeupProducts { get; set; }
         public DbSet<RoutineRecommendation> RoutineRecommendations { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
     }
 }

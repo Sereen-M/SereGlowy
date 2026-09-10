@@ -8,14 +8,14 @@ namespace SereGlowy.Models
         public int IngredientId { get; set; }
 
         [Required]
-        public string IngredientName { get; set; }
+        public string IngredientName { get; set; } = string.Empty;
 
-        public string Description { get; set; }
+        public string Description { get; set; } = string.Empty;
 
-        public string Purpose { get; set; }
+        public string Purpose { get; set; } = string.Empty;
 
-        public string SuitableSkinType { get; set; }
+        public string SuitableSkinType { get; set; } = string.Empty;
 
-        public List<ProductIngredient> ProductIngredients { get; set; }
+        public List<ProductIngredient>? ProductIngredients { get; set; }
     }
 }

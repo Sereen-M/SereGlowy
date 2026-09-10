@@ -1,0 +1,163 @@
+﻿@model SereGlowy.Models.Order
+
+@{
+    ViewData["Title"] = "Order Details";
+}
+
+<section class="order-details-page">
+
+    <div class="container">
+
+        <div class="order-details-header">
+
+            <div>
+
+                <span class="section-label">
+                    ORDER DETAILS
+                </span>
+
+                <h1>
+                    Order #@Model.OrderId
+                </h1>
+
+                <p>
+                    Placed on
+                    @Model.OrderDate.ToString("dd MMMM yyyy")
+                </p>
+
+            </div>
+
+
+            <span class="order-details-status">
+                @Model.Status
+            </span>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <!-- PRODUCTS -->
+
+            <div class="col-lg-8">
+
+                <div class="order-details-card">
+
+                    <h2>
+                        Your Products
+                    </h2>
+
+
+                    @foreach (var item in Model.OrderItems)
+                    {
+                        <div class="order-product-row">
+
+                            <div class="order-product-image">
+
+                                @if (!string.IsNullOrWhiteSpace(
+                                    item.Product?.ImageUrl))
+                                {
+                                    <img src="@item.Product.ImageUrl"
+                                         alt="@item.Product.ProductName" />
+                                }
+
+                            </div>
+
+
+                            <div class="order-product-info">
+
+                                <span>
+                                    @item.Product?.Brand
+                                </span>
+
+                                <h4>
+                                    @item.Product?.ProductName
+                                </h4>
+
+                                <small>
+                                    Quantity: @item.Quantity
+                                </small>
+
+                            </div>
+
+
+                            <div class="order-product-price">
+
+                                @((item.UnitPrice * item.Quantity)
+                                    .ToString("0.00")) JOD
+
+                            </div>
+
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+
+
+            <!-- ORDER INFO -->
+
+            <div class="col-lg-4">
+
+                <div class="order-details-card">
+
+                    <span class="section-label">
+                        DELIVERY
+                    </span>
+
+                    <h2>
+                        Order Information
+                    </h2>
+
+
+                    <div class="order-info-row">
+                        <span>Name</span>
+                        <strong>@Model.FullName</strong>
+                    </div>
+
+
+                    <div class="order-info-row">
+                        <span>Phone</span>
+                        <strong>@Model.Phone</strong>
+                    </div>
+
+
+                    <div class="order-info-row">
+                        <span>Address</span>
+                        <strong>@Model.Address</strong>
+                    </div>
+
+
+                    <div class="order-info-total">
+
+                        <span>Total</span>
+
+                        <strong>
+                            @Model.TotalAmount.ToString("0.00") JOD
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="mt-4">
+
+            <a asp-controller="Orders"
+               asp-action="Index"
+               class="btn btn-outline-glow">
+
+                ← Back to My Orders
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>

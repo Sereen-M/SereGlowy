@@ -32,6 +32,7 @@
 
         <div class="row g-4 mt-2">
 
+            <!-- Users -->
             <div class="col-md-6 col-xl-3">
                 <div class="admin-stat-card">
 
@@ -40,7 +41,7 @@
                     </span>
 
                     <strong>
-                        120
+                        @ViewBag.UserCount
                     </strong>
 
                     <p>
@@ -51,6 +52,7 @@
             </div>
 
 
+            <!-- Products -->
             <div class="col-md-6 col-xl-3">
                 <div class="admin-stat-card">
 
@@ -59,7 +61,7 @@
                     </span>
 
                     <strong>
-                        48
+                        @ViewBag.ProductCount
                     </strong>
 
                     <p>
@@ -70,6 +72,7 @@
             </div>
 
 
+            <!-- Ingredients -->
             <div class="col-md-6 col-xl-3">
                 <div class="admin-stat-card">
 
@@ -78,7 +81,7 @@
                     </span>
 
                     <strong>
-                        32
+                        @ViewBag.IngredientCount
                     </strong>
 
                     <p>
@@ -89,6 +92,7 @@
             </div>
 
 
+            <!-- Makeup -->
             <div class="col-md-6 col-xl-3">
                 <div class="admin-stat-card">
 
@@ -97,7 +101,7 @@
                     </span>
 
                     <strong>
-                        25
+                        @ViewBag.MakeupProductCount
                     </strong>
 
                     <p>
@@ -127,9 +131,11 @@
 
             <div class="row g-4">
 
+                <!-- Products -->
                 <div class="col-md-6 col-xl-4">
 
-                    <a href="#"
+                    <a asp-controller="Admin"
+                       asp-action="Products"
                        class="admin-management-card">
 
                         <span class="admin-card-icon">
@@ -153,10 +159,11 @@
                 </div>
 
 
+                <!-- Categories -->
                 <div class="col-md-6 col-xl-4">
 
                     <a asp-controller="Admin"
-                       asp-action="Products"
+                       asp-action="Categories"
                        class="admin-management-card">
 
                         <span class="admin-card-icon">
@@ -180,10 +187,11 @@
                 </div>
 
 
+                <!-- Ingredients -->
                 <div class="col-md-6 col-xl-4">
 
                     <a asp-controller="Admin"
-                       asp-action="Categories"
+                       asp-action="Ingredients"
                        class="admin-management-card">
 
                         <span class="admin-card-icon">
@@ -207,9 +215,11 @@
                 </div>
 
 
+                <!-- Makeup -->
                 <div class="col-md-6 col-xl-4">
+
                     <a asp-controller="Admin"
-                       asp-action="Ingredients"
+                       asp-action="MakeupProducts"
                        class="admin-management-card">
 
                         <span class="admin-card-icon">
@@ -233,10 +243,11 @@
                 </div>
 
 
+                <!-- Users -->
                 <div class="col-md-6 col-xl-4">
 
                     <a asp-controller="Admin"
-                       asp-action="MakeupProducts"
+                       asp-action="Users"
                        class="admin-management-card">
 
                         <span class="admin-card-icon">
@@ -260,10 +271,11 @@
                 </div>
 
 
+                <!-- Routines -->
                 <div class="col-md-6 col-xl-4">
 
                     <a asp-controller="Admin"
-                       asp-action="Users"
+                       asp-action="Routines"
                        class="admin-management-card">
 
                         <span class="admin-card-icon">
@@ -287,6 +299,32 @@
                 </div>
 
             </div>
+
+        </div>
+        <!-- Orders -->
+        <div class="col-md-6 col-lg-4 mx-auto mt-4">
+
+            <a asp-controller="Admin"
+               asp-action="Orders"
+               class="admin-management-card">
+
+                <div class="admin-card-icon">
+                    📦
+                </div>
+
+                <h3>
+                    Orders
+                </h3>
+
+                <p>
+                    Review customer orders and update their status.
+                </p>
+
+                <span class="admin-card-link">
+                    Manage Orders →
+                </span>
+
+            </a>
 
         </div>
 

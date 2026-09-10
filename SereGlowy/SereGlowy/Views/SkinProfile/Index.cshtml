@@ -1,4 +1,6 @@
-﻿@{
+﻿@model SereGlowy.Models.SkinProfile
+
+@{
     ViewData["Title"] = "My Skin Profile";
 }
 
@@ -6,163 +8,109 @@
 
     <div class="container">
 
-        <div class="profile-page-header text-center">
+        <div class="text-center mb-5">
 
             <span class="section-label">
-                YOUR SKIN PROFILE
+                MY SKIN PROFILE
             </span>
 
             <h1>
-                Your glow, your profile.
+                Your SereGlowy Profile
             </h1>
 
             <p>
-                Based on your answers, here’s a simple overview
-                of your SereGlowy preferences.
+                Review your skincare preferences and update them anytime.
             </p>
 
         </div>
 
 
-        <div class="skin-profile-card">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success mb-4">
+                @TempData["SuccessMessage"]
+            </div>
+        }
 
-            <div class="profile-card-top">
 
-                <div>
-                    <span class="profile-small">
-                        SEREGLOWY PROFILE
+        <div class="admin-form-card">
+
+            <div class="row g-4">
+
+                <div class="col-md-6">
+                    <span class="section-label">
+                        SKIN TYPE
                     </span>
 
-                    <h2>
-                        Your Skin Summary
-                    </h2>
+                    <h3>
+                        @Model.SkinType
+                    </h3>
                 </div>
 
-                <div class="profile-sparkle">
-                    ✦
+
+                <div class="col-md-6">
+                    <span class="section-label">
+                        SENSITIVE SKIN
+                    </span>
+
+                    <h3>
+                        @(Model.IsSensitive == true ? "Yes" :
+                          Model.IsSensitive == false ? "No" : "Not specified")
+                    </h3>
+                </div>
+
+
+                <div class="col-md-6">
+                    <span class="section-label">
+                        SKIN GOAL
+                    </span>
+
+                    <h3>
+                        @Model.SkinGoal
+                    </h3>
+                </div>
+
+
+                <div class="col-md-6">
+                    <span class="section-label">
+                        ROUTINE EXPERIENCE
+                    </span>
+
+                    <h3>
+                        @Model.RoutineExperience
+                    </h3>
+                </div>
+
+
+                <div class="col-md-6">
+                    <span class="section-label">
+                        MAKEUP USAGE
+                    </span>
+
+                    <h3>
+                        @Model.MakeupUsage
+                    </h3>
                 </div>
 
             </div>
 
 
-            <div class="row g-4 mt-2">
+            <div class="admin-form-actions mt-4">
 
-                <div class="col-md-6">
-                    <div class="profile-info-box">
+                <a asp-controller="SkinProfile"
+                   asp-action="Edit"
+                   class="btn btn-glow">
 
-                        <span>Skin Type</span>
+                    Edit Profile
 
-                        <strong>
-                            Combination
-                        </strong>
-
-                        <p>
-                            A mix of oily and dry areas.
-                        </p>
-
-                    </div>
-                </div>
-
-
-                <div class="col-md-6">
-                    <div class="profile-info-box">
-
-                        <span>Sensitivity</span>
-
-                        <strong>
-                            Not Sensitive
-                        </strong>
-
-                        <p>
-                            Your skin usually feels comfortable.
-                        </p>
-
-                    </div>
-                </div>
-
-
-                <div class="col-md-6">
-                    <div class="profile-info-box">
-
-                        <span>Main Goal</span>
-
-                        <strong>
-                            Glow
-                        </strong>
-
-                        <p>
-                            Your routine can focus on brighter-looking skin.
-                        </p>
-
-                    </div>
-                </div>
-
-
-                <div class="col-md-6">
-                    <div class="profile-info-box">
-
-                        <span>Routine Level</span>
-
-                        <strong>
-                            Simple Routine
-                        </strong>
-
-                        <p>
-                            A few easy steps work best for your preference.
-                        </p>
-
-                    </div>
-                </div>
-
-
-                <div class="col-md-6">
-                    <div class="profile-info-box">
-
-                        <span>Makeup Usage</span>
-
-                        <strong>
-                            Sometimes
-                        </strong>
-
-                        <p>
-                            Makeup is part of your routine on some days.
-                        </p>
-
-                    </div>
-                </div>
-
-
-                <div class="col-md-6">
-                    <div class="profile-info-box profile-highlight">
-
-                        <span>Your Next Step</span>
-
-                        <strong>
-                            Build Your Routine
-                        </strong>
-
-                        <p>
-                            Explore your personalized morning and evening steps.
-                        </p>
-
-                    </div>
-                </div>
-
-            </div>
-
-
-            <div class="profile-actions">
-
-                <a asp-controller="Onboarding"
-                   asp-action="Index"
-                   class="btn btn-outline-glow">
-                    Edit My Answers
                 </a>
 
-                <a asp-controller="Routine"
-                   asp-action="Index"
-                   class="btn btn-glow">
-                    View My Routine
+                <a asp-controller="Products"
+                   asp-action="Recommended"
+                   class="btn btn-outline-glow">
+
+                    View Recommendations
+
                 </a>
 
             </div>
