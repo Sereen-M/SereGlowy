@@ -9,7 +9,6 @@
     decimal total = ViewBag.Total ?? 0;
 }
 
-
 <section class="checkout-page">
 
     <div class="container">
@@ -23,7 +22,8 @@
             <h1>Checkout</h1>
 
             <p>
-                Complete your delivery details and review your order.
+                Complete your delivery details, choose a payment method,
+                and review your order.
             </p>
 
         </div>
@@ -39,7 +39,7 @@
 
         <div class="row g-4">
 
-            <!-- DELIVERY INFORMATION -->
+            <!-- DELIVERY + PAYMENT -->
 
             <div class="col-lg-7">
 
@@ -54,10 +54,13 @@
 
                     <form asp-controller="Cart"
                           asp-action="Checkout"
-                          method="post">
+                          method="post"
+                          id="checkoutForm">
 
                         @Html.AntiForgeryToken()
 
+
+                        <!-- FULL NAME -->
 
                         <div class="checkout-form-group">
 
@@ -72,6 +75,8 @@
                         </div>
 
 
+                        <!-- PHONE -->
+
                         <div class="checkout-form-group">
 
                             <label>Phone Number</label>
@@ -85,6 +90,8 @@
                         </div>
 
 
+                        <!-- ADDRESS -->
+
                         <div class="checkout-form-group">
 
                             <label>Delivery Address</label>
@@ -97,6 +104,206 @@
 
                         </div>
 
+
+                        <!-- =========================
+                             PAYMENT METHOD
+                        ========================== -->
+
+                        <div class="checkout-payment-section">
+
+                            <span class="section-label">
+                                PAYMENT METHOD
+                            </span>
+
+                            <h3>How would you like to pay?</h3>
+
+
+                            <div class="payment-options">
+
+
+                                <!-- CASH -->
+
+                                <label class="payment-option active"
+                                       id="cashPaymentOption">
+
+                                    <input type="radio"
+                                           name="paymentMethod"
+                                           value="CashOnDelivery"
+                                           checked />
+
+                                    <div class="payment-option-icon">
+                                        💵
+                                    </div>
+
+                                    <div class="payment-option-text">
+
+                                        <strong>
+                                            Cash on Delivery
+                                        </strong>
+
+                                        <span>
+                                            Pay when your order arrives.
+                                        </span>
+
+                                    </div>
+
+                                    <div class="payment-radio-circle"></div>
+
+                                </label>
+
+
+                                <!-- CARD -->
+
+                                <label class="payment-option"
+                                       id="cardPaymentOption">
+
+                                    <input type="radio"
+                                           name="paymentMethod"
+                                           value="Card" />
+
+                                    <div class="payment-option-icon">
+                                        💳
+                                    </div>
+
+                                    <div class="payment-option-text">
+
+                                        <strong>
+                                            Credit / Debit Card
+                                        </strong>
+
+                                        <span>
+                                            Simulated card payment for demo purposes.
+                                        </span>
+
+                                    </div>
+
+                                    <div class="payment-radio-circle"></div>
+
+                                </label>
+
+                            </div>
+
+
+                            <!-- =========================
+                                 DEMO CARD FIELDS
+                            ========================== -->
+
+                            <div class="demo-card-fields"
+                                 id="cardFields">
+
+
+                                <div class="demo-card-heading">
+
+                                    <div>
+                                        <span class="demo-card-label">
+                                            DEMO CARD
+                                        </span>
+
+                                        <h4>Card Information</h4>
+                                    </div>
+
+                                    <span class="demo-card-chip">
+                                        ✦
+                                    </span>
+
+                                </div>
+
+
+                                <!-- CARDHOLDER -->
+
+                                <div class="checkout-form-group">
+
+                                    <label>Cardholder Name</label>
+
+                                    <input type="text"
+                                           id="cardholderName"
+                                           class="form-control demo-card-input"
+                                           placeholder="Sereen Katout"
+                                           autocomplete="off" />
+
+                                </div>
+
+
+                                <!-- CARD NUMBER -->
+
+                                <div class="checkout-form-group">
+
+                                    <label>Card Number</label>
+
+                                    <input type="text"
+                                           id="cardNumber"
+                                           class="form-control demo-card-input"
+                                           placeholder="1111 2222 3333 4444"
+                                           maxlength="19"
+                                           inputmode="numeric"
+                                           autocomplete="off" />
+
+                                </div>
+
+
+                                <div class="row g-3">
+
+                                    <!-- EXPIRY -->
+
+                                    <div class="col-md-6">
+
+                                        <div class="checkout-form-group mb-0">
+
+                                            <label>Expiry Date</label>
+
+                                            <input type="text"
+                                                   id="cardExpiry"
+                                                   class="form-control demo-card-input"
+                                                   placeholder="MM/YY"
+                                                   maxlength="5"
+                                                   autocomplete="off" />
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- CVV -->
+
+                                    <div class="col-md-6">
+
+                                        <div class="checkout-form-group mb-0">
+
+                                            <label>CVV</label>
+
+                                            <input type="password"
+                                                   id="cardCvv"
+                                                   class="form-control demo-card-input"
+                                                   placeholder="123"
+                                                   maxlength="4"
+                                                   inputmode="numeric"
+                                                   autocomplete="off" />
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="demo-payment-warning">
+
+                                    <span>✦</span>
+
+                                    <p>
+                                        Demo payment only.
+                                        Do not enter real card information.
+                                        No payment transaction is processed.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- PLACE ORDER -->
 
                         <button type="submit"
                                 class="btn btn-glow w-100 checkout-place-btn">
@@ -112,7 +319,9 @@
             </div>
 
 
-            <!-- ORDER SUMMARY -->
+            <!-- =========================
+                 ORDER SUMMARY
+            ========================== -->
 
             <div class="col-lg-5">
 
@@ -178,9 +387,19 @@
                     </div>
 
 
-                    <p class="checkout-payment-note">
-                        Demo checkout — no real payment is processed.
-                    </p>
+                    <div class="checkout-secure-note">
+
+                        <span>♡</span>
+
+                        <div>
+                            <strong>Simple & Secure Demo Checkout</strong>
+
+                            <p>
+                                No real online payment is processed.
+                            </p>
+                        </div>
+
+                    </div>
 
                 </div>
 
@@ -191,3 +410,161 @@
     </div>
 
 </section>
+
+
+@section Scripts {
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function() {
+
+            const cashRadio =
+                document.querySelector('input[value="CashOnDelivery"]');
+
+            const cardRadio =
+                document.querySelector('input[value="Card"]');
+
+            const cashOption =
+                document.getElementById("cashPaymentOption");
+
+            const cardOption =
+                document.getElementById("cardPaymentOption");
+
+            const cardFields =
+                document.getElementById("cardFields");
+
+            const checkoutForm =
+                document.getElementById("checkoutForm");
+
+            const cardholderName =
+                document.getElementById("cardholderName");
+
+            const cardNumber =
+                document.getElementById("cardNumber");
+
+            const cardExpiry =
+                document.getElementById("cardExpiry");
+
+            const cardCvv =
+                document.getElementById("cardCvv");
+
+
+            function updatePaymentMethod() {
+
+                if (cardRadio.checked) {
+
+                    cardFields.classList.add("show");
+
+                    cardOption.classList.add("active");
+                    cashOption.classList.remove("active");
+
+                }
+                else {
+
+                    cardFields.classList.remove("show");
+
+                    cashOption.classList.add("active");
+                    cardOption.classList.remove("active");
+
+                }
+
+            }
+
+
+            cashRadio.addEventListener(
+                "change",
+                updatePaymentMethod
+            );
+
+            cardRadio.addEventListener(
+                "change",
+                updatePaymentMethod
+            );
+
+
+            /* CARD NUMBER FORMATTING */
+
+            cardNumber.addEventListener("input", function() {
+
+                let value =
+                    this.value.replace(/\D/g, "");
+
+                value =
+                    value.substring(0, 16);
+
+                this.value =
+                    value.replace(/(.{4})/g, "$1 ")
+                        .trim();
+
+            });
+
+
+            /* EXPIRY FORMATTING */
+
+            cardExpiry.addEventListener("input", function() {
+
+                let value =
+                    this.value.replace(/\D/g, "")
+                        .substring(0, 4);
+
+                if (value.length > 2) {
+
+                    value =
+                        value.substring(0, 2)
+                        + "/"
+                        + value.substring(2);
+
+                }
+
+                this.value = value;
+
+            });
+
+
+            /* CVV NUMBERS ONLY */
+
+            cardCvv.addEventListener("input", function() {
+
+                this.value =
+                    this.value
+                        .replace(/\D/g, "")
+                        .substring(0, 4);
+
+            });
+
+
+            /* DEMO CARD VALIDATION */
+
+            checkoutForm.addEventListener(
+                "submit",
+                function(event) {
+
+                    if (!cardRadio.checked) {
+                        return;
+                    }
+
+                    if (
+                        cardholderName.value.trim() === "" ||
+                        cardNumber.value.replace(/\s/g, "").length !== 16 ||
+                        cardExpiry.value.length !== 5 ||
+                        cardCvv.value.length < 3
+                    ) {
+
+                        event.preventDefault();
+
+                        alert(
+                            "Please complete the demo card information."
+                        );
+
+                    }
+
+                }
+            );
+
+
+            updatePaymentMethod();
+
+        });
+
+    </script>
+}

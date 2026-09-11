@@ -6887,3 +6887,294 @@ body {
         width: 100%;
     }
 }
+/* =========================================================
+   CHECKOUT PAYMENT METHOD
+========================================================= */
+
+.checkout-payment-section {
+    margin-top: 34px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(168, 91, 104, 0.10);
+}
+
+    .checkout-payment-section h3 {
+        margin: 7px 0 20px;
+        color: var(--sg-primary);
+        font-size: 22px;
+        font-weight: 600;
+    }
+
+
+/* ===============================
+   PAYMENT OPTIONS
+================================ */
+
+.payment-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.payment-option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 17px;
+    border: 1px solid rgba(168, 91, 104, 0.12);
+    border-radius: 18px;
+    background: #ffffff;
+    cursor: pointer;
+    transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+    .payment-option:hover {
+        transform: translateY(-2px);
+        border-color: rgba(168, 91, 104, 0.28);
+        box-shadow: 0 10px 25px rgba(119, 66, 76, 0.05);
+    }
+
+    .payment-option.active {
+        border-color: var(--sg-primary);
+        background: #fff8f7;
+        box-shadow: 0 10px 28px rgba(168, 91, 104, 0.07);
+    }
+
+    .payment-option input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+
+/* ICON */
+
+.payment-option-icon {
+    width: 43px;
+    height: 43px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 13px;
+    background: #fff0ec;
+    font-size: 19px;
+}
+
+
+/* TEXT */
+
+.payment-option-text {
+    flex: 1;
+}
+
+    .payment-option-text strong {
+        display: block;
+        margin-bottom: 3px;
+        color: var(--sg-dark);
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .payment-option-text span {
+        display: block;
+        color: var(--sg-text);
+        font-size: 11px;
+        line-height: 1.45;
+    }
+
+
+/* RADIO CIRCLE */
+
+.payment-radio-circle {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    border: 1.5px solid rgba(168, 91, 104, 0.35);
+    border-radius: 50%;
+    background: #ffffff;
+}
+
+.payment-option.active .payment-radio-circle {
+    border: 5px solid var(--sg-primary);
+}
+
+
+/* =========================================================
+   DEMO CARD
+========================================================= */
+
+.demo-card-fields {
+    max-height: 0;
+    padding: 0 22px;
+    overflow: hidden;
+    border: 1px solid transparent;
+    border-radius: 22px;
+    background: radial-gradient( circle at 100% 0%, rgba(248, 204, 212, 0.35), transparent 32% ), #fffafa;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: max-height 0.4s ease, padding 0.4s ease, opacity 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+}
+
+    .demo-card-fields.show {
+        max-height: 650px;
+        margin-bottom: 24px;
+        padding: 24px 22px;
+        border-color: rgba(168, 91, 104, 0.10);
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+
+/* CARD HEADER */
+
+.demo-card-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.demo-card-label {
+    color: var(--sg-gold);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.demo-card-heading h4 {
+    margin: 3px 0 0;
+    color: var(--sg-primary);
+    font-size: 19px;
+    font-weight: 600;
+}
+
+.demo-card-chip {
+    width: 38px;
+    height: 29px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: linear-gradient( 135deg, #f4c3b5, #e9aab4 );
+    color: #ffffff;
+    font-size: 12px;
+}
+
+
+/* WARNING */
+
+.demo-payment-warning {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    margin-top: 18px;
+    padding: 12px 14px;
+    border-radius: 13px;
+    background: #fff0ec;
+}
+
+    .demo-payment-warning span {
+        color: var(--sg-primary);
+        font-size: 11px;
+    }
+
+    .demo-payment-warning p {
+        margin: 0;
+        color: var(--sg-text);
+        font-size: 10px;
+        line-height: 1.55;
+    }
+
+
+/* =========================================================
+   ORDER SUMMARY NOTE
+========================================================= */
+
+.checkout-secure-note {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-top: 18px;
+    padding: 14px;
+    border-radius: 15px;
+    background: #fff8f7;
+}
+
+    .checkout-secure-note > span {
+        color: var(--sg-primary);
+        font-size: 18px;
+    }
+
+    .checkout-secure-note strong {
+        display: block;
+        color: var(--sg-dark);
+        font-size: 11px;
+    }
+
+    .checkout-secure-note p {
+        margin: 2px 0 0;
+        color: var(--sg-text);
+        font-size: 10px;
+    }
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 767px) {
+
+    .payment-options {
+        grid-template-columns: 1fr;
+    }
+
+    .demo-card-fields.show {
+        padding: 20px 17px;
+    }
+}
+/* ===============================
+   LOGIN INPUT AUTOFILL FIX
+================================ */
+
+input.form-control:-webkit-autofill,
+input.form-control:-webkit-autofill:hover,
+input.form-control:-webkit-autofill:focus,
+input.form-control:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px #FFF9F8 inset !important;
+    -webkit-text-fill-color: var(--sg-text) !important;
+    caret-color: var(--sg-text);
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+
+/* =========================================
+   FORCE LOGIN AUTOFILL TO SEREGLOWY COLORS
+========================================= */
+
+#account input.form-control,
+#account input.form-control:focus {
+    background-color: #FFF9F8 !important;
+    color: var(--sg-text) !important;
+}
+
+
+
+#account input:-webkit-autofill,
+#account input:-webkit-autofill:hover,
+#account input:-webkit-autofill:focus,
+#account input:-webkit-autofill:active {
+    -webkit-text-fill-color: var(--sg-text) !important;
+    -webkit-box-shadow: 0 0 0 1000px #FFF9F8 inset !important;
+    box-shadow: 0 0 0 1000px #FFF9F8 inset !important;
+    background-color: #FFF9F8 !important;
+    background-image: none !important;
+    caret-color: var(--sg-text) !important;
+    border-color: rgba(168, 91, 104, 0.18) !important;
+    transition: background-color 9999s ease-out 0s !important;
+}
+
+#account {
+    color-scheme: light;
+}
